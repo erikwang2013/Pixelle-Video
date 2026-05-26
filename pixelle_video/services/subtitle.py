@@ -33,6 +33,9 @@ class SubtitleService:
         Each segment: {"text": str, "duration": float, "audio_path": str}
         Duration is used to calculate start/end times cumulatively.
         """
+        if not segments:
+            raise ValueError("segments cannot be empty")
+
         entries = []
         start_time = 0.0
 
@@ -44,9 +47,18 @@ class SubtitleService:
             # Wrap long text into max 2 lines
             if len(text) > max_chars_per_line:
                 mid = len(text) // 2
-                space_idx = text.rfind(" ", 0, mid + 10)
-                if space_idx == -1:
+                # Search both forward and backward for nearest space to mid
+                left_idx = text.rfind(" ", 0, mid)
+                right_idx = text.find(" ", mid)
+                if left_idx == -1 and right_idx == -1:
                     space_idx = mid
+                elif left_idx == -1:
+                    space_idx = right_idx
+                elif right_idx == -1:
+                    space_idx = left_idx
+                else:
+                    # Choose the space closer to mid
+                    space_idx = left_idx if (mid - left_idx) <= (right_idx - mid) else right_idx
                 text = text[:space_idx].strip() + "\n" + text[space_idx:].strip()
 
             start_ts = self._seconds_to_srt_time(start_time)
@@ -125,7 +137,7 @@ class SubtitleService:
         h = int(seconds // 3600)
         m = int((seconds % 3600) // 60)
         s = int(seconds % 60)
-        ms = int((seconds - int(seconds)) * 1000)
+        ms = round((seconds - int(seconds)) * 1000)
         return f"{h:02d}:{m:02d}:{s:02d},{ms:03d}"
 
     def _color_to_hex(self, color_name: str) -> str:
