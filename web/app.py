@@ -52,9 +52,15 @@ def main():
         title="History",
         icon="📚"
     )
-    
+
+    url_page = st.Page(
+        "pages/3_🔗_URL.py",
+        title="URL-to-Video",
+        icon="🔗",
+    )
+
     # Set up navigation and run
-    pg = st.navigation([home_page, history_page])
+    pg = st.navigation([home_page, history_page, url_page])
     pg.run()
 
 
