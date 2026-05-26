@@ -26,6 +26,7 @@ Services:
 - PersistenceService: Task metadata and storyboard persistence
 - HistoryManager: History management business logic
 - ComfyBaseService: Base class for ComfyUI-based services
+- URLFetcher: URL content extraction and summarization
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -38,6 +39,7 @@ from pixelle_video.services.persistence import PersistenceService
 from pixelle_video.services.history_manager import HistoryManager
 from pixelle_video.services.subtitle import SubtitleService
 from pixelle_video.services.transition import TransitionService
+from pixelle_video.services.url_fetcher import URLFetcher
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -54,5 +56,6 @@ __all__ = [
     "HistoryManager",
     "SubtitleService",
     "TransitionService",
+    "URLFetcher",
 ]
 
