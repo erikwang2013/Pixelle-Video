@@ -346,3 +346,20 @@ async def list_voices(locale: str = None, retry_count: int = _RETRY_COUNT, retry
         else:
             raise RuntimeError("List voices failed without error (unexpected)")
 
+
+def resolve_voice_for_frame(frame_index: int, voice_list: list) -> str:
+    """Resolve which voice to use for a given frame index.
+
+    Alternates through the voice list. Frame 0 uses voices[0],
+    frame 1 uses voices[1], etc. Wraps when exceeding voice count.
+
+    Args:
+        frame_index: Zero-based frame index
+        voice_list: List of TTS voice names to alternate through
+
+    Returns:
+        Voice name string for the given frame
+    """
+    if not voice_list:
+        return "zh_CN_XiaoxiaoNeural"
+    return voice_list[frame_index % len(voice_list)]

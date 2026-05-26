@@ -316,3 +316,43 @@ class TTSService(ComfyBaseService):
         except Exception as e:
             logger.error(f"TTS generation error: {e}")
             raise
+
+    async def generate_multi_voice(
+        self,
+        narrations: list,
+        voice_assignments: list,
+        speed: float = 1.0,
+        mode: str = "local",
+        workflow: Optional[str] = None,
+        progress_callback=None,
+    ) -> list:
+        """Generate TTS audio for multiple narrations with per-frame voice selection.
+
+        Args:
+            narrations: List of text strings, one per frame
+            voice_assignments: List of voice names, same length as narrations
+            speed: Speech speed multiplier
+            mode: "local" (edge-tts) or "comfyui"
+            workflow: Optional ComfyUI workflow path
+            progress_callback: Optional async callable for progress updates
+
+        Returns:
+            List of audio file paths in order matching narrations
+        """
+        results = []
+        total = len(narrations)
+
+        for i, (text, voice) in enumerate(zip(narrations, voice_assignments)):
+            if progress_callback:
+                await progress_callback(f"TTS frame {i+1}/{total} (voice: {voice})")
+
+            audio_path = await self(
+                text=text,
+                voice=voice,
+                speed=speed,
+                inference_mode=mode,
+                workflow=workflow,
+            )
+            results.append(audio_path)
+
+        return results
