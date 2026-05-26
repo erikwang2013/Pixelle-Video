@@ -28,6 +28,7 @@ Services:
 - ComfyBaseService: Base class for ComfyUI-based services
 - AnalyticsService: Usage analytics and summary statistics
 - URLFetcher: URL content extraction and summarization
+- VideoEditorService: trim, reorder, and replace frame operations
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -42,6 +43,7 @@ from pixelle_video.services.subtitle import SubtitleService
 from pixelle_video.services.transition import TransitionService
 from pixelle_video.services.analytics import AnalyticsService
 from pixelle_video.services.url_fetcher import URLFetcher
+from pixelle_video.services.video_editor import VideoEditorService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -60,5 +62,6 @@ __all__ = [
     "TransitionService",
     "AnalyticsService",
     "URLFetcher",
+    "VideoEditorService",
 ]
 
