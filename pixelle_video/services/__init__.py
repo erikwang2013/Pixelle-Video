@@ -21,6 +21,8 @@ Services:
 - MediaService: Media generation (image & video)
 - VideoService: Video processing
 - FrameProcessor: Frame processing orchestrator
+- SubtitleService: SRT subtitle generation and timing
+- TransitionService: Video transition effects between concatenated segments
 - PersistenceService: Task metadata and storyboard persistence
 - HistoryManager: History management business logic
 - ComfyBaseService: Base class for ComfyUI-based services
@@ -35,6 +37,7 @@ from pixelle_video.services.frame_processor import FrameProcessor
 from pixelle_video.services.persistence import PersistenceService
 from pixelle_video.services.history_manager import HistoryManager
 from pixelle_video.services.subtitle import SubtitleService
+from pixelle_video.services.transition import TransitionService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -50,5 +53,6 @@ __all__ = [
     "PersistenceService",
     "HistoryManager",
     "SubtitleService",
+    "TransitionService",
 ]
 
