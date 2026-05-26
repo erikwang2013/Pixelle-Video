@@ -13,6 +13,7 @@
 """Video transition effects between frames"""
 
 import subprocess
+import uuid
 from pathlib import Path
 from typing import List
 
@@ -60,7 +61,7 @@ class TransitionService:
 
     def _concat_simple(self, segments: List[str], output: str) -> str:
         """Simple concat without transitions."""
-        concat_file = "/tmp/pixelle_concat_list.txt"
+        concat_file = f"/tmp/pixelle_concat_{uuid.uuid4().hex[:8]}.txt"
         with open(concat_file, "w") as f:
             for seg in segments:
                 f.write(f"file '{str(Path(seg).absolute())}'\n")
