@@ -333,3 +333,56 @@ def render_advanced_settings():
                 st.success(tr("status.config_reset"))
                 safe_rerun()
 
+    # Render advanced video settings below system config
+    render_advanced_video_settings()
+
+
+def render_advanced_video_settings():
+    """Render advanced video options: subtitles, transitions, multi-voice TTS."""
+    st.divider()
+    st.caption(f"🎬 {tr('settings.advanced_video')}")
+
+    # Subtitles toggle
+    st.session_state.subtitles_enabled = st.checkbox(
+        tr("settings.subtitles.enable"),
+        value=st.session_state.get("subtitles_enabled", False),
+        help=tr("settings.subtitles.help"),
+        key="advanced_subtitles",
+    )
+    if st.session_state.subtitles_enabled:
+        st.session_state.subtitle_position = st.selectbox(
+            tr("settings.subtitles.position"),
+            options=["bottom", "top"],
+            format_func=lambda x: tr(f"settings.subtitles.position_{x}"),
+            key="advanced_subtitle_pos",
+        )
+
+    # Transition selector
+    st.session_state.transition_type = st.selectbox(
+        tr("settings.transition.label"),
+        options=["none", "crossfade", "fade_in_out", "slide_left", "zoom_in"],
+        format_func=lambda x: tr(f"settings.transition.{x}"),
+        help=tr("settings.transition.help"),
+        key="advanced_transition",
+    )
+
+    # Multi-voice toggle
+    st.session_state.multi_voice_enabled = st.checkbox(
+        tr("settings.multi_voice.enable"),
+        value=st.session_state.get("multi_voice_enabled", False),
+        help=tr("settings.multi_voice.help"),
+        key="advanced_multivoice",
+    )
+    if st.session_state.multi_voice_enabled:
+        available_voices = [
+            "zh_CN_XiaoxiaoNeural", "zh_CN_YunjianNeural",
+            "zh_CN_XiaoyiNeural", "zh_CN_YunxiNeural",
+        ]
+        st.session_state.multi_voice_list = st.multiselect(
+            tr("settings.multi_voice.select"),
+            options=available_voices,
+            default=st.session_state.get("multi_voice_list", available_voices[:2]),
+            format_func=lambda x: tr(f"tts.voice.{x}"),
+            key="advanced_multivoice_list",
+        )
+

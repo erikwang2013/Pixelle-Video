@@ -154,7 +154,13 @@ def render_single_output(pixelle_video, video_params):
                 # Add custom template parameters if any
                 if custom_values_for_video:
                     video_params["template_params"] = custom_values_for_video
-                
+
+                # Add advanced video settings from session state
+                video_params["subtitles"] = st.session_state.get("subtitles_enabled", False)
+                video_params["transition"] = st.session_state.get("transition_type", "none")
+                if st.session_state.get("multi_voice_enabled", False):
+                    video_params["multi_voice"] = st.session_state.get("multi_voice_list", [])
+
                 result = run_async(pixelle_video.generate_video(**video_params))
                 
                 # Calculate total generation time
@@ -278,7 +284,13 @@ def render_batch_output(pixelle_video, video_params):
             # Add template parameters
             if video_params.get("template_params"):
                 shared_config["template_params"] = video_params["template_params"]
-            
+
+            # Add advanced video settings from session state
+            shared_config["subtitles"] = st.session_state.get("subtitles_enabled", False)
+            shared_config["transition"] = st.session_state.get("transition_type", "none")
+            if st.session_state.get("multi_voice_enabled", False):
+                shared_config["multi_voice"] = st.session_state.get("multi_voice_list", [])
+
             # UI containers
             overall_progress_container = st.container()
             current_task_container = st.container()
