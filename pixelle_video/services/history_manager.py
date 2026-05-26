@@ -182,43 +182,164 @@ class HistoryManager:
         **override_params
     ) -> Optional[str]:
         """
-        Regenerate a specific frame (FUTURE FEATURE)
-        
+        Regenerate a specific frame with optional parameter overrides.
+
+        Updates the storyboard frame with new parameters (e.g., image_prompt)
+        and persists the change. Actual media re-generation must be triggered
+        by the pipeline layer, which has access to the media service.
+
         Args:
             task_id: Original task ID
             frame_index: Frame index to regenerate (0-based)
-            **override_params: Parameters to override (image_prompt, style, etc.)
-        
+            **override_params: Parameters to override (image_prompt, etc.)
+
         Returns:
-            New frame image path or None if failed
-        
-        TODO: Implement in Phase 3
-        - Load original storyboard
-        - Get frame parameters
-        - Override with new parameters
-        - Call image generation service
-        - Update storyboard
-        - Re-composite video
+            Updated frame image path, or None if failed
         """
-        logger.warning("regenerate_frame is not implemented yet (Phase 3 feature)")
-        return None
+        try:
+            # Verify task exists
+            metadata = await self.persistence.load_task_metadata(task_id)
+            if not metadata:
+                logger.error(f"Task {task_id} not found for frame regeneration")
+                return None
+
+            # Load storyboard from persistence
+            storyboard = await self.persistence.load_storyboard(task_id)
+            if not storyboard or frame_index >= len(storyboard.frames):
+                logger.error(
+                    f"Frame {frame_index} out of range for task {task_id} "
+                    f"(total frames: {len(storyboard.frames) if storyboard else 0})"
+                )
+                return None
+
+            frame = storyboard.frames[frame_index]
+
+            # Apply overrides to the frame
+            if "image_prompt" in override_params:
+                frame.image_prompt = override_params["image_prompt"]
+                logger.info(
+                    f"Updated image_prompt for frame {frame_index} "
+                    f"of task {task_id}"
+                )
+
+            # Save updated storyboard
+            await self.persistence.save_storyboard(task_id, storyboard)
+
+            logger.info(
+                f"Frame {frame_index} parameters updated for task {task_id}. "
+                f"Run pipeline to regenerate media."
+            )
+            return frame.image_path
+
+        except Exception as e:
+            logger.error(f"Failed to regenerate frame: {e}")
+            return None
     
     async def export_task(self, task_id: str, export_path: str) -> Optional[str]:
         """
-        Export task as a package (metadata + video + frames) (FUTURE FEATURE)
-        
+        Export task as a ZIP package containing video, frames, and metadata.
+
+        The archive includes:
+          - metadata.json (task metadata)
+          - storyboard.json (storyboard data with frame details)
+          - video/<filename> (final video if available)
+          - frames/<index>_image.<ext> (frame images)
+          - frames/<index>_audio.<ext> (frame audio)
+
         Args:
             task_id: Task ID to export
-            export_path: Export file path (e.g., "exports/task.zip")
-        
+            export_path: Output ZIP file path (e.g., "exports/task.zip")
+
         Returns:
             Export file path or None if failed
-        
-        TODO: Implement in Phase 3
-        - Collect all task files
-        - Create ZIP archive
-        - Include metadata.json, storyboard.json, video, frames
         """
-        logger.warning("export_task is not implemented yet (Phase 3 feature)")
-        return None
+        import zipfile
+        import json as json_module
+
+        try:
+            # Verify task exists
+            metadata = await self.persistence.load_task_metadata(task_id)
+            if not metadata:
+                logger.error(f"Task {task_id} not found for export")
+                return None
+
+            # Ensure parent directory exists
+            Path(export_path).parent.mkdir(parents=True, exist_ok=True)
+
+            with zipfile.ZipFile(
+                export_path, "w", zipfile.ZIP_DEFLATED
+            ) as zf:
+                # --- metadata.json ---
+                export_meta = {
+                    "task_id": task_id,
+                    "title": metadata.get("title", ""),
+                    "created_at": str(metadata.get("created_at", "")),
+                    "completed_at": str(metadata.get("completed_at", "")),
+                    "status": metadata.get("status", "unknown"),
+                    "pipeline": metadata.get("config", {}).get(
+                        "pipeline", "standard"
+                    ),
+                }
+                zf.writestr(
+                    "metadata.json",
+                    json_module.dumps(
+                        export_meta, indent=2, ensure_ascii=False
+                    ),
+                )
+
+                # --- storyboard.json ---
+                storyboard = await self.persistence.load_storyboard(task_id)
+                if storyboard:
+                    sb_dict = {
+                        "title": storyboard.title,
+                        "total_duration": storyboard.total_duration,
+                        "frames": [
+                            {
+                                "index": f.index,
+                                "narration": f.narration,
+                                "image_prompt": f.image_prompt,
+                                "duration": f.duration,
+                            }
+                            for f in storyboard.frames
+                        ],
+                    }
+                    zf.writestr(
+                        "storyboard.json",
+                        json_module.dumps(
+                            sb_dict, indent=2, ensure_ascii=False
+                        ),
+                    )
+
+                # --- video ---
+                video_path = metadata.get("result", {}).get("video_path")
+                if not video_path and storyboard:
+                    video_path = storyboard.final_video_path
+                if video_path and Path(video_path).exists():
+                    arcname = f"video{Path(video_path).suffix}"
+                    zf.write(video_path, arcname)
+                    logger.debug(f"Added video: {arcname}")
+
+                # --- frames (images + audio) ---
+                if storyboard:
+                    for frame in storyboard.frames:
+                        idx = frame.index
+                        # Image
+                        img = getattr(frame, "image_path", None) or getattr(
+                            frame, "composed_image_path", None
+                        )
+                        if img and Path(img).exists():
+                            arcname = f"frames/{idx:03d}_image{Path(img).suffix}"
+                            zf.write(img, arcname)
+                        # Audio
+                        aud = getattr(frame, "audio_path", None)
+                        if aud and Path(aud).exists():
+                            arcname = f"frames/{idx:03d}_audio{Path(aud).suffix}"
+                            zf.write(aud, arcname)
+
+            logger.info(f"Task {task_id} exported to {export_path}")
+            return export_path
+
+        except Exception as e:
+            logger.error(f"Failed to export task {task_id}: {e}")
+            return None
 
