@@ -251,7 +251,26 @@ class VideoService:
         except Exception as e:
             logger.error(f"Concatenation error: {e}")
             raise RuntimeError(f"Failed to concatenate videos: {e}")
-    
+
+    def concat_with_transitions(
+        self,
+        segments: List[str],
+        output: str,
+        transition: str = "none",
+        transition_duration: float = 0.5,
+        fps: int = 30,
+    ) -> str:
+        """Concatenate video segments with optional transition effects.
+
+        Convenience wrapper around TransitionService.
+        """
+        from pixelle_video.services.transition import TransitionService
+        tsvc = TransitionService()
+        return tsvc.concat_with_transitions(
+            segments, output, transition=transition,
+            transition_duration=transition_duration, fps=fps
+        )
+
     def _get_video_duration(self, video: str) -> float:
         """Get video duration in seconds"""
         try:

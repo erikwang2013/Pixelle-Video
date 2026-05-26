@@ -294,7 +294,8 @@ class StandardPipeline(LinearVideoPipeline):
         """Step 6: Generate audio, images, and render frames (Core processing)."""
         storyboard = ctx.storyboard
         config = ctx.config
-        
+        multi_voice = ctx.params.get("multi_voice")
+
         # Check if using RunningHub workflows for parallel processing
         is_runninghub = (
             (config.tts_workflow and config.tts_workflow.startswith("runninghub/")) or
@@ -317,7 +318,7 @@ class StandardPipeline(LinearVideoPipeline):
                     base_progress = 0.2
                     frame_range = 0.6
                     per_frame_progress = frame_range / len(storyboard.frames)
-                    
+
                     # Create frame-specific progress callback
                     def frame_progress_callback(event: ProgressEvent):
                         overall_progress = base_progress + (per_frame_progress * completed_count) + (per_frame_progress * event.progress)
@@ -331,7 +332,7 @@ class StandardPipeline(LinearVideoPipeline):
                                 action=event.action
                             )
                             ctx.progress_callback(adjusted_event)
-                    
+
                     # Report frame start
                     self._report_progress(
                         ctx.progress_callback,
@@ -340,11 +341,20 @@ class StandardPipeline(LinearVideoPipeline):
                         frame_current=i+1,
                         frame_total=len(storyboard.frames)
                     )
-                    
+
+                    # Multi-voice: create per-frame config copy to avoid race conditions
+                    frame_config = config
+                    if multi_voice:
+                        import dataclasses
+                        from pixelle_video.utils.tts_util import resolve_voice_for_frame
+                        frame_config = dataclasses.replace(
+                            config, voice_id=resolve_voice_for_frame(i, multi_voice)
+                        )
+
                     processed_frame = await self.core.frame_processor(
                         frame=frame,
                         storyboard=storyboard,
-                        config=config,
+                        config=frame_config,
                         total_frames=len(storyboard.frames),
                         progress_callback=frame_progress_callback
                     )
@@ -366,12 +376,12 @@ class StandardPipeline(LinearVideoPipeline):
         else:
             # Serial processing for non-RunningHub workflows
             logger.info("⚙️ Using serial processing (non-RunningHub workflow)")
-            
+
             for i, frame in enumerate(storyboard.frames):
                 base_progress = 0.2
                 frame_range = 0.6
                 per_frame_progress = frame_range / len(storyboard.frames)
-                
+
                 # Create frame-specific progress callback
                 def frame_progress_callback(event: ProgressEvent):
                     overall_progress = base_progress + (per_frame_progress * i) + (per_frame_progress * event.progress)
@@ -385,7 +395,7 @@ class StandardPipeline(LinearVideoPipeline):
                             action=event.action
                         )
                         ctx.progress_callback(adjusted_event)
-                
+
                 # Report frame start
                 self._report_progress(
                     ctx.progress_callback,
@@ -394,7 +404,13 @@ class StandardPipeline(LinearVideoPipeline):
                     frame_current=i+1,
                     frame_total=len(storyboard.frames)
                 )
-                
+
+                # Multi-voice: temporarily override voice_id for this frame
+                if multi_voice:
+                    from pixelle_video.utils.tts_util import resolve_voice_for_frame
+                    original_voice = config.voice_id
+                    config.voice_id = resolve_voice_for_frame(i, multi_voice)
+
                 processed_frame = await self.core.frame_processor(
                     frame=frame,
                     storyboard=storyboard,
@@ -402,29 +418,72 @@ class StandardPipeline(LinearVideoPipeline):
                     total_frames=len(storyboard.frames),
                     progress_callback=frame_progress_callback
                 )
+
+                # Restore original voice after serial frame processing
+                if multi_voice:
+                    config.voice_id = original_voice
+
                 storyboard.total_duration += processed_frame.duration
                 logger.info(f"✅ Frame {i+1} completed ({processed_frame.duration:.2f}s)")
 
     async def post_production(self, ctx: PipelineContext):
-        """Step 7: Concatenate videos and add BGM."""
+        """Step 7: Concatenate videos, add transitions/BGM/subtitles."""
         self._report_progress(ctx.progress_callback, "concatenating", 0.85)
-        
+
         storyboard = ctx.storyboard
         segment_paths = [frame.video_segment_path for frame in storyboard.frames]
-        
+
         video_service = VideoService()
-        
-        final_video_path = video_service.concat_videos(
-            videos=segment_paths,
-            output=ctx.final_video_path,
-            bgm_path=ctx.params.get("bgm_path"),
-            bgm_volume=ctx.params.get("bgm_volume", 0.2),
-            bgm_mode=ctx.params.get("bgm_mode", "loop")
-        )
-        
+        task_dir = ctx.task_dir
+
+        # Extract new feature params
+        subtitles_enabled = ctx.params.get("subtitles", False)
+        transition_type = ctx.params.get("transition", "none")
+        subtitle_position = ctx.params.get("subtitle_position", "bottom")
+        bgm_path = ctx.params.get("bgm_path")
+        bgm_volume = ctx.params.get("bgm_volume", 0.2)
+        bgm_mode = ctx.params.get("bgm_mode", "loop")
+
+        # Step 1: Concatenate segments (with or without transitions)
+        if transition_type != "none":
+            merged = video_service.concat_with_transitions(
+                segment_paths, f"{task_dir}/merged_temp.mp4",
+                transition=transition_type
+            )
+        else:
+            # Use existing concat without BGM (BGM added separately below)
+            merged = video_service.concat_videos(segment_paths, f"{task_dir}/merged_temp.mp4")
+
+        # Step 2: Add BGM if configured
+        if bgm_path:
+            merged = video_service.add_bgm(
+                merged, bgm_path, f"{task_dir}/merged_with_bgm.mp4",
+                bgm_volume=bgm_volume, loop=(bgm_mode == "loop")
+            )
+
+        # Step 3: Burn subtitles if enabled
+        if subtitles_enabled:
+            from pixelle_video.services.subtitle import SubtitleService
+            sub_svc = SubtitleService()
+            frames_data = [
+                {"text": f.narration, "duration": f.duration, "audio_path": f.audio_path or ''}
+                for f in ctx.storyboard.frames
+            ]
+            srt_path = sub_svc.generate_srt(frames_data, f"{task_dir}/subtitles.srt")
+            merged = sub_svc.burn_subtitles(
+                merged, srt_path, f"{task_dir}/final_with_subs.mp4",
+                position=subtitle_position
+            )
+
+        # Copy to final output path if different
+        final_video_path = merged
+        if merged != ctx.final_video_path:
+            shutil.copy2(merged, ctx.final_video_path)
+            final_video_path = ctx.final_video_path
+
         storyboard.final_video_path = final_video_path
         storyboard.completed_at = datetime.now()
-        
+
         # Copy to user-specified path if provided
         user_specified_output = ctx.params.get("output_path")
         if user_specified_output:
@@ -433,7 +492,7 @@ class StandardPipeline(LinearVideoPipeline):
             logger.info(f"📹 Final video copied to: {user_specified_output}")
             ctx.final_video_path = user_specified_output
             storyboard.final_video_path = user_specified_output
-        
+
         logger.success(f"🎬 Video generation completed: {ctx.final_video_path}")
 
     async def finalize(self, ctx: PipelineContext) -> VideoGenerationResult:
