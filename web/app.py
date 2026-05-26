@@ -59,8 +59,20 @@ def main():
         icon="🔗",
     )
 
+    analytics_page = st.Page(
+        "pages/4_Analytics.py",
+        title="Analytics",
+        icon="📊",
+    )
+
+    editor_page = st.Page(
+        "pages/5_Editor.py",
+        title="Editor",
+        icon="✂️",
+    )
+
     # Set up navigation and run
-    pg = st.navigation([home_page, history_page, url_page])
+    pg = st.navigation([home_page, history_page, url_page, analytics_page, editor_page])
     pg.run()
 
 
