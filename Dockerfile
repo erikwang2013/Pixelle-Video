@@ -72,6 +72,10 @@ RUN mkdir -p /app/output /app/data /app/temp
 # 8501: Web UI service
 EXPOSE 8000 8501
 
+# Health check using the /live endpoint
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s --retries=3 \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/live')" || exit 1
+
 # Default command (can be overridden in docker-compose)
 CMD ["uv", "run", "python", "api/app.py"]
 

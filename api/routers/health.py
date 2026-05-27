@@ -43,11 +43,46 @@ async def health_check():
     return HealthResponse()
 
 
+@router.get("/ready")
+async def readiness_check():
+    """
+    Kubernetes readiness probe — checks all dependencies.
+
+    Verifies that ffmpeg is available and the database is reachable.
+    """
+    import shutil
+
+    checks: dict = {"ffmpeg": False, "db": False}
+
+    checks["ffmpeg"] = shutil.which("ffmpeg") is not None
+
+    try:
+        from pixelle_video.services.database import DatabaseService
+
+        DatabaseService().get_stats()
+        checks["db"] = True
+    except Exception:
+        pass
+
+    all_ok = all(checks.values())
+    return {"status": "ready" if all_ok else "not_ready", "checks": checks}
+
+
+@router.get("/live")
+async def liveness_check():
+    """
+    Kubernetes liveness probe — basic alive check.
+
+    Returns a simple alive status without checking dependencies.
+    """
+    return {"status": "alive"}
+
+
 @router.get("/version", response_model=HealthResponse)
 async def get_version():
     """
     Get API version
-    
+
     Returns version information.
     """
     return HealthResponse()
