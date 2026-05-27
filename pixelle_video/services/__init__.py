@@ -29,6 +29,10 @@ Services:
 - AnalyticsService: Usage analytics and summary statistics
 - URLFetcher: URL content extraction and summarization
 - VideoEditorService: trim, reorder, and replace frame operations
+- TaskScheduler: Cron-based task scheduling for automated video generation
+- SocialPublisher: Social media video publishing (YouTube, Bilibili, TikTok)
+- UserManager: User authentication and API key management
+- WebhookService: Webhook registration and dispatch service
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -44,6 +48,10 @@ from pixelle_video.services.transition import TransitionService
 from pixelle_video.services.analytics import AnalyticsService
 from pixelle_video.services.url_fetcher import URLFetcher
 from pixelle_video.services.video_editor import VideoEditorService
+from pixelle_video.services.scheduler import TaskScheduler
+from pixelle_video.services.social_publisher import SocialPublisher
+from pixelle_video.services.auth import UserManager
+from pixelle_video.services.webhook import WebhookService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -63,5 +71,9 @@ __all__ = [
     "AnalyticsService",
     "URLFetcher",
     "VideoEditorService",
+    "TaskScheduler",
+    "SocialPublisher",
+    "UserManager",
+    "WebhookService",
 ]
 
