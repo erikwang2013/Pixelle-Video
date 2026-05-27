@@ -59,6 +59,7 @@ from api.routers import (
     auth_router,
     scheduler_router,
     webhook_router,
+    ws_router,
 )
 
 
@@ -143,6 +144,7 @@ app.include_router(editor_router, prefix=api_config.api_prefix)
 app.include_router(auth_router, prefix=api_config.api_prefix)
 app.include_router(scheduler_router, prefix=api_config.api_prefix)
 app.include_router(webhook_router, prefix=api_config.api_prefix)
+app.include_router(ws_router, prefix=api_config.api_prefix)
 
 
 @app.get("/")
@@ -168,6 +170,7 @@ async def root():
             "auth": f"{api_config.api_prefix}/auth",
             "scheduler": f"{api_config.api_prefix}/schedules",
             "webhook": f"{api_config.api_prefix}/webhooks",
+            "ws": f"{api_config.api_prefix}/ws",
         }
     }
 

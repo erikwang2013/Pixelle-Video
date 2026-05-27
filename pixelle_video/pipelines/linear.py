@@ -90,6 +90,30 @@ class LinearVideoPipeline(BasePipeline):
         """
         Execute the pipeline using the template method.
         """
+        # --- WebSocket progress streaming integration ---
+        task_id = kwargs.get("task_id", "")
+        use_ws = kwargs.get("use_ws_progress", False)
+
+        if use_ws and task_id:
+            from pixelle_video.services.progress_stream import progress_manager
+            ws_callback = progress_manager.create_progress_callback(task_id)
+            original_cb = progress_callback
+
+            async def dual_callback(event: ProgressEvent):
+                if original_cb:
+                    original_cb(event)
+                await ws_callback(
+                    event.event_type,
+                    event.progress,
+                    message=event.extra_info or "",
+                    frame_current=event.frame_current,
+                    frame_total=event.frame_total,
+                    step=event.step,
+                    action=event.action,
+                )
+
+            progress_callback = dual_callback
+
         # 1. Initialize context
         ctx = PipelineContext(
             input_text=text,

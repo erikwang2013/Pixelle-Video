@@ -239,8 +239,9 @@ async def generate_video_async(
                 "prompt_prefix": request_body.prompt_prefix,
                 "bgm_path": request_body.bgm_path,
                 "bgm_volume": request_body.bgm_volume,
-                # Progress callback can be added here if needed
-                # "progress_callback": lambda event: task_manager.update_progress(...)
+                # WebSocket progress streaming
+                "task_id": task.task_id,
+                "use_ws_progress": True,
             }
             
             # Add TTS workflow if specified
