@@ -61,6 +61,7 @@ Services:
 - SEOService: AI-powered SEO metadata generation for videos
 - DatabaseService: SQLite database for task storage and migration from JSON
 - JianYingExportService: Export storyboard to JianYing (剪映) draft format
+- ABTestingService: A/B testing — generate multiple video versions for comparison
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -96,6 +97,8 @@ from pixelle_video.services.email_notify import EmailNotifyService
 from pixelle_video.services.seo import SEOService
 from pixelle_video.services.database import DatabaseService
 from pixelle_video.services.jianying_export import JianYingExportService
+from pixelle_video.services.ab_testing import ABTestingService
+from pixelle_video.services.ai_music import AIMusicService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -135,4 +138,6 @@ __all__ = [
     "SEOService",
     "DatabaseService",
     "JianYingExportService",
+    "ABTestingService",
+    "AIMusicService",
 ]
