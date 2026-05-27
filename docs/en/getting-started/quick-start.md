@@ -1,115 +1,93 @@
-# Quick Start
-
-Already installed and configured? Let's create your first video!
+# Usage Guide
 
 ---
 
-## Start the Web Interface
-
-### Windows All-in-One Package Users
-
-If you're using the Windows All-in-One Package, simply:
-1. Double-click `start.bat`
-2. Your browser will automatically open `http://localhost:8501`
-
-### Install from Source Users
+## Launch
 
 ```bash
-# Using uv
 uv run streamlit run web/app.py
+# Or: uv run uvicorn api.app:app --host 0.0.0.0 --port 8000
 ```
 
-Your browser will automatically open `http://localhost:8501`
+---
+
+## Pages
+
+| Page | Function |
+|------|----------|
+| 🎬 Home | Video generation — choose pipeline, configure, generate |
+| 📚 History | View/download/duplicate/delete past videos |
+| 🔗 URL-to-Video | Paste URL, AI extracts and creates video |
+| 📊 Analytics | Usage stats dashboard |
+| ✂️ Editor | Frame reorder, trim, replace, ZIP export |
+| ⚙️ Account | API keys, webhooks, schedules, social |
 
 ---
 
-## Create Your First Video
+## Pipelines
 
-### Step 1: Check Configuration
-
-On first use, expand the「⚙️ System Configuration」panel and confirm:
-
-- **LLM Configuration**: Select an AI model (e.g., Qianwen, GPT) and enter API Key
-- **Image Configuration**: Configure ComfyUI address or RunningHub API Key
-
-If not yet configured, see the [Configuration Guide](configuration.md).
-
-Click "Save Configuration" when done.
+| Pipeline | How it works |
+|----------|-------------|
+| Quick Create | Enter topic → AI generates everything |
+| Custom Media | Upload photos/videos → AI analyzes and creates |
+| Digital Human | Avatar + product → AI talking-head video |
+| Image-to-Video | First frame + prompt → dynamic video |
+| Motion Transfer | Reference video + image → motion transfer |
 
 ---
 
-### Step 2: Enter a Topic
+## Advanced Features
 
-In the left panel's「📝 Content Input」section:
+**Subtitles** — Sidebar → Advanced → enable Auto Subtitles (top/bottom).
 
-1. Select「**AI Generate Content**」mode
-2. Enter a topic in the text box, for example:
-   ```
-   Why develop a reading habit
-   ```
-3. (Optional) Set number of scenes, default is 5 frames
+**Transitions** — Crossfade / Fade to Black / Slide / Zoom.
 
-!!! tip "Topic Examples"
-    - Why develop a reading habit
-    - How to improve work efficiency
-    - The importance of healthy eating
-    - The meaning of travel
+**Multi-Speaker TTS** — Alternate voices per frame.
 
----
+**Batch Generation** — Multiple topics, one click.
 
-### Step 3: Configure Voice and Visuals
+**URL to Video** — Paste article URL → AI extracts and generates.
 
-In the middle panel:
+**Video Editor** — Reorder frames, trim, regenerate single frame, export ZIP.
 
-**Voice Settings**
-- Select TTS workflow (default Edge-TTS works well)
-- For voice cloning, upload a reference audio file
+**Script Templates** — 10 presets: News/Tutorial/Review/Storytelling/Meditation/Tech/Recipe/Travel/Fitness/Finance.
 
-**Visual Settings**
-- Select image generation workflow (default works well)
-- Set image dimensions (default 1024x1024)
-- Choose video template (recommend portrait 1080x1920)
+**AI Music** — 10 genres with smart style recommendation.
+
+**A/B Testing** — Multi-variant comparison: style/voice/transition/quality/subtitles.
 
 ---
 
-### Step 4: Generate Video
+## API Usage
 
-Click the「🎬 Generate Video」button in the right panel!
+```bash
+# Sync
+curl -X POST http://localhost:8000/api/video/generate/sync \
+  -H "Content-Type: application/json" \
+  -d '{"text": "How to be productive", "mode": "generate"}'
 
-The system will show real-time progress:
-- Generate script
-- Generate images (for each scene)
-- Synthesize voice
-- Compose video
-
-!!! info "Generation Time"
-    Generating a 5-scene video takes about 2-5 minutes, depending on: LLM API response speed, image generation speed, TTS workflow type, and network conditions
-
----
-
-### Step 5: Preview Video
-
-Once complete, the video will automatically play in the right panel!
-
-You'll see:
-- 📹 Video preview player
-- ⏱️ Video duration
-- 📦 File size
-- 🎬 Number of scenes
-- 📐 Video dimensions
-
-The video file is saved in the `output/` folder.
+# Async + WebSocket progress
+curl -X POST http://localhost:8000/api/video/generate/async \
+  -d '{"text": "Future of AI", "mode": "generate"}'
+# → ws://localhost:8000/api/ws/progress/{task_id}
+```
 
 ---
 
-## Next Steps
+## JianYing/CapCut Export
 
-Congratulations! You've successfully created your first video 🎉
+Generate → "Export to JianYing" → open CapCut Pro → find in Drafts.
 
-Next, you can:
+---
 
-- **Adjust Styles** - See the [Custom Visual Style](../tutorials/custom-style.md) tutorial
-- **Clone Voices** - See the [Voice Cloning with Reference Audio](../tutorials/voice-cloning.md) tutorial
-- **Use API** - See the [API Usage Guide](../user-guide/api.md)
-- **Develop Templates** - See the [Template Development Guide](../user-guide/templates.md)
+## Docker
 
+```bash
+docker compose up -d
+```
+
+---
+
+## FAQ
+
+See sidebar FAQ or [FAQ page](../faq.md).

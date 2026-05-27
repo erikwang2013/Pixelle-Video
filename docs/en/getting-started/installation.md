@@ -1,134 +1,106 @@
-# Installation
-
-This page will guide you through installing Pixelle-Video.
+# Installation Guide
 
 ---
 
 ## System Requirements
 
-### Required
+| Requirement | Notes |
+|-------------|-------|
+| Python | 3.11+ |
+| OS | Windows / macOS / Linux |
+| FFmpeg | Required for video composition |
+| RAM | 4GB+ |
+| Disk | 2GB+ |
 
-- **Python**: 3.10 or higher
-- **Operating System**: Windows, macOS, or Linux
-- **Package Manager**: uv (recommended) or pip
-
-### Optional
-
-- **GPU**: NVIDIA GPU with 6GB+ VRAM recommended for local ComfyUI
-- **Network**: Stable internet connection for LLM API and image generation services
-
----
-
-## 🪟 Windows All-in-One Package (Recommended for Windows Users)
-
-**No need to install Python, uv, or ffmpeg - ready to use out of the box!**
-
-### Download and Install
-
-1. Visit [GitHub Releases](https://github.com/AIDC-AI/Pixelle-Video/releases/latest) to download the latest version
-2. Download the latest Windows All-in-One Package and extract it to any directory
-3. Double-click `start.bat` to launch the Web interface
-4. Your browser will automatically open `http://localhost:8501`
-
-!!! success "Installation Complete!"
-    The package includes all dependencies, no need to manually install any environment. On first use, you only need to configure API keys in "⚙️ System Configuration" to get started.
-
-!!! tip "Next Steps"
-    After installation, check out the [Configuration Guide](configuration.md) to set up LLM and image generation services, then see [Quick Start](quick-start.md) to create your first video.
+**Optional:** NVIDIA GPU (6GB+ VRAM) for local ComfyUI
 
 ---
 
-## Install from Source (For macOS / Linux Users or Users Who Need Customization)
-
-### Step 1: Clone the Repository
+## Method 1: From Source
 
 ```bash
 git clone https://github.com/AIDC-AI/Pixelle-Video.git
 cd Pixelle-Video
 ```
 
-### Step 2: Install Dependencies
-
-!!! tip "Recommended: Use uv"
-    This project uses `uv` as the package manager, which is faster and more reliable than traditional pip.
-
-#### Using uv (Recommended)
+### Install FFmpeg
 
 ```bash
-# Install uv if you haven't already
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# Ubuntu/Debian: sudo apt install ffmpeg
+# macOS: brew install ffmpeg
+# Windows: https://ffmpeg.org/download.html
+```
 
-# Install project dependencies (uv will create a virtual environment automatically)
+### Install Dependencies
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
 uv sync
 ```
 
-#### Using pip
+Or pip: `python -m venv .venv && source .venv/bin/activate && pip install -e .`
+
+### Install Playwright
 
 ```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate virtual environment
-# Windows:
-venv\Scripts\activate
-# macOS/Linux:
-source venv/bin/activate
-
-# Install dependencies
-pip install -e .
+uv run playwright install chromium
 ```
 
 ---
 
-## Verify Installation
-
-Run the following command to verify the installation:
+## Method 2: Docker
 
 ```bash
-# Using uv
+docker compose up -d
+```
+Web UI: `http://localhost:8501` | API: `http://localhost:8000` | Swagger: `http://localhost:8000/docs`
+
+---
+
+## Method 3: Windows All-in-One
+
+Download from [Releases](https://github.com/AIDC-AI/Pixelle-Video/releases/latest), extract, run `start.bat`.
+
+---
+
+## Verify
+
+```bash
 uv run streamlit run web/app.py
-
-# Or using pip (activate virtual environment first)
-streamlit run web/app.py
 ```
 
-Your browser should automatically open `http://localhost:8501` and display the Pixelle-Video web interface.
-
-!!! success "Installation Successful!"
-    If you can see the web interface, the installation was successful! Next, check out the [Configuration Guide](configuration.md) to set up your services.
+Open `http://localhost:8501`.
 
 ---
 
-## Optional: Install ComfyUI (Local Deployment)
-
-If you want to run image generation locally, you'll need to install ComfyUI:
-
-### Quick Install
+## Configuration
 
 ```bash
-# Clone ComfyUI
+cp config.example.yaml config.yaml
+```
+
+```yaml
+llm:
+  api_key: "your-key"
+  base_url: "https://api.openai.com/v1"
+  model: "gpt-4o"
+comfyui:
+  runninghub_api_key: "your-rh-key"
+```
+
+---
+
+## Optional: Local ComfyUI
+
+```bash
 git clone https://github.com/comfyanonymous/ComfyUI.git
-cd ComfyUI
-
-# Install dependencies
-pip install -r requirements.txt
+cd ComfyUI && pip install -r requirements.txt
+python main.py  # http://127.0.0.1:8188
 ```
-
-### Start ComfyUI
-
-```bash
-python main.py
-```
-
-ComfyUI runs on `http://127.0.0.1:8188` by default.
-
-!!! info "ComfyUI Models"
-    ComfyUI requires downloading model files to work. Please refer to the [ComfyUI documentation](https://github.com/comfyanonymous/ComfyUI) for information on downloading and configuring models.
 
 ---
 
-## Next Steps
+## Next
 
-- [Configuration](configuration.md) - Configure LLM and image generation services
-- [Quick Start](quick-start.md) - Create your first video
-
+- [Quick Start](quick-start.md) — Create your first video
+- [Configuration](configuration.md) — Detailed setup
