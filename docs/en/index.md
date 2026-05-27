@@ -44,6 +44,8 @@ Simply input a **topic**, and Pixelle-Video will automatically:
 - ✅ **Video Editor** - Frame reorder, trim, replace, ZIP export
 - ✅ **Scheduler + Webhooks** - Cron scheduling, callback notifications
 - ✅ **User Authentication** - API key management, multi-user support
+- ✅ **CapCut Export** - One-click export to JianYing/CapCut drafts
+- ✅ **PWA + Email Alerts** - Mobile install, completion notifications
 - ✅ **Flexible Composition** - Based on ComfyUI architecture, use preset workflows or customize any capability
 
 ---

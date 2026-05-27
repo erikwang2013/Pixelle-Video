@@ -138,6 +138,11 @@ The Account page has four tabs:
 - **Social**: Configure social media publishing credentials (YouTube, Bilibili coming soon)
 
 ---
+## Export to CapCut/JianYing
+
+One-click export to JianYing draft format: enter project name, select version, click export. Open JianYing Pro → "Drafts" → find your project. Supports video clips, voiceover, subtitles, transitions, BGM auto-import.
+
+---
 ## FAQ
 
 The sidebar includes built-in FAQ for quick reference:

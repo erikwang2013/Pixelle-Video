@@ -174,6 +174,10 @@ Generate video asynchronously, returns task ID immediately. Suitable for large v
 `POST /api/schedules` — Create schedule
 `DELETE /api/schedules/{schedule_id}` — Delete schedule
 
+### JianYing Export
+
+`POST /api/jianying/export` — Export storyboard to JianYing/CapCut draft
+
 ---
 
 ## More Information

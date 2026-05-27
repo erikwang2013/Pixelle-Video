@@ -174,6 +174,10 @@ uv run uvicorn api.app:app --host 0.0.0.0 --port 8000
 `POST /api/schedules` — 创建定时任务
 `DELETE /api/schedules/{schedule_id}` — 删除定时任务
 
+### 剪映导出
+
+`POST /api/jianying/export` — 导出故事板为剪映草稿格式
+
 ---
 
 ## 更多信息
