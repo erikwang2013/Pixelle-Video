@@ -47,6 +47,7 @@ Services:
 - BatchCSVService: Batch CSV import for video generation
 - EmailNotifyService: Email notification service with SMTP and enable/disable toggle
 - SEOService: AI-powered SEO metadata generation for videos
+- DatabaseService: SQLite database for task storage and migration from JSON
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -80,6 +81,7 @@ from pixelle_video.services.tts_emotion import TTSEmotionService
 from pixelle_video.services.batch_csv import BatchCSVService
 from pixelle_video.services.email_notify import EmailNotifyService
 from pixelle_video.services.seo import SEOService
+from pixelle_video.services.database import DatabaseService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -117,4 +119,5 @@ __all__ = [
     "BatchCSVService",
     "EmailNotifyService",
     "SEOService",
+    "DatabaseService",
 ]
