@@ -1,16 +1,15 @@
 """与模板模式相关的类及函数等"""
 
-from enum import Enum
 from copy import deepcopy
+from enum import Enum
+from typing import Any, Dict, List
 
-from . import util
-from . import exceptions
-from .time_util import Timerange
+from . import exceptions, util
+from .local_materials import AudioMaterial, VideoMaterial
 from .segment import BaseSegment
+from .time_util import Timerange
 from .track import BaseTrack, TrackType
-from .local_materials import VideoMaterial, AudioMaterial
 
-from typing import List, Dict, Any
 
 class ShrinkMode(Enum):
     """处理替换素材时素材变短情况的方法"""

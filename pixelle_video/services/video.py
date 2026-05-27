@@ -34,11 +34,7 @@ from typing import List, Literal, Optional
 import ffmpeg
 from loguru import logger
 
-from pixelle_video.utils.os_util import (
-    get_resource_path,
-    list_resource_files,
-    resource_exists
-)
+from pixelle_video.utils.os_util import get_resource_path, list_resource_files, resource_exists
 
 
 def check_ffmpeg() -> None:

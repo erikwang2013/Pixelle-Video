@@ -11,13 +11,13 @@
 # limitations under the License.
 
 """User authentication and API key management"""
+import hashlib
 import json
 import uuid
-import hashlib
-from pathlib import Path
+from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
 
 
 @dataclass

@@ -24,7 +24,6 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 import streamlit as st
-from loguru import logger
 
 from web.i18n import tr
 from web.utils.async_helpers import run_async
@@ -40,8 +39,8 @@ st.set_page_config(
 def main():
     st.markdown(f"### ✂️ {tr('editor.title')}")
 
-    from pixelle_video.services.persistence import PersistenceService
     from pixelle_video.services.history_manager import HistoryManager
+    from pixelle_video.services.persistence import PersistenceService
 
     persistence = PersistenceService()
     history = HistoryManager(persistence)

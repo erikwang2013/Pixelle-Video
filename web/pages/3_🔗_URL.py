@@ -10,7 +10,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import streamlit as st
+
 from web.pipelines.url_to_video import render_url_to_video
 
 render_url_to_video()

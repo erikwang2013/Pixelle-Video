@@ -12,6 +12,7 @@
 
 """Account and integrations settings page"""
 import streamlit as st
+
 from web.i18n import tr
 
 st.markdown(f"### {tr('account.title')}")

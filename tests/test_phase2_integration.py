@@ -124,7 +124,7 @@ class TestI18nIntegration:
     """Integration tests for i18n keys added in Phase 2."""
 
     def test_analytics_i18n_keys_exist(self):
-        from web.i18n import tr, set_language
+        from web.i18n import set_language, tr
 
         keys = [
             "analytics.title",
@@ -146,7 +146,7 @@ class TestI18nIntegration:
                 )
 
     def test_editor_i18n_keys_exist(self):
-        from web.i18n import tr, set_language
+        from web.i18n import set_language, tr
 
         keys = [
             "editor.title",

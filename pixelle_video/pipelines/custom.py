@@ -20,20 +20,19 @@ For real projects, copy this file and modify it according to your needs.
 """
 
 from datetime import datetime
-from pathlib import Path
-from typing import Optional, Callable
+from typing import Callable, Optional
 
 from loguru import logger
 
-from pixelle_video.pipelines.base import BasePipeline
 from pixelle_video.models.progress import ProgressEvent
 from pixelle_video.models.storyboard import (
-    Storyboard,
-    StoryboardFrame,
-    StoryboardConfig,
     ContentMetadata,
-    VideoGenerationResult
+    Storyboard,
+    StoryboardConfig,
+    StoryboardFrame,
+    VideoGenerationResult,
 )
+from pixelle_video.pipelines.base import BasePipeline
 
 
 class CustomPipeline(BasePipeline):
@@ -155,10 +154,7 @@ class CustomPipeline(BasePipeline):
         self._report_progress(progress_callback, "initializing", 0.05)
         
         # Create task directory
-        from pixelle_video.utils.os_util import (
-            create_task_output_dir,
-            get_task_final_video_path
-        )
+        from pixelle_video.utils.os_util import create_task_output_dir, get_task_final_video_path
         
         task_dir, task_id = create_task_output_dir()
         logger.info(f"Task directory: {task_dir}")
@@ -179,8 +175,9 @@ class CustomPipeline(BasePipeline):
         # ========== Step 0.5: Check template requirements ==========
         # Detect template type by filename prefix
         from pathlib import Path
+
         from pixelle_video.services.frame_html import HTMLFrameGenerator
-        from pixelle_video.utils.template_util import resolve_template_path, get_template_type
+        from pixelle_video.utils.template_util import get_template_type, resolve_template_path
         
         template_name = Path(frame_template).name
         template_type = get_template_type(template_name)

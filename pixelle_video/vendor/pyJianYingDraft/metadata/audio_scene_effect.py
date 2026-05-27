@@ -1,7 +1,7 @@
 """音频场景特效元数据"""
 
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta, EffectParam
+from .effect_meta import EffectEnum, EffectMeta, EffectParam
+
 
 class AudioSceneEffectType(EffectEnum):
     """音频"场景音"效果枚举"""

@@ -11,11 +11,10 @@
 # limitations under the License.
 
 """Cloud storage integration (S3, OSS, COS)"""
-import os
-from pathlib import Path
-from typing import Optional, Dict
-import hashlib
 import mimetypes
+from pathlib import Path
+from typing import Dict
+
 from loguru import logger
 
 

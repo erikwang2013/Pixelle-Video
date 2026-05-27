@@ -1,12 +1,10 @@
 """AI music generation service — Suno/Udio API integration"""
 import json
-import time
 import uuid
 from pathlib import Path
 from typing import Dict, List, Optional
-import httpx
-from loguru import logger
 
+from loguru import logger
 
 MUSIC_STYLES = {
     "cinematic": {"name_zh": "电影感", "tags": "cinematic, orchestral, epic"},

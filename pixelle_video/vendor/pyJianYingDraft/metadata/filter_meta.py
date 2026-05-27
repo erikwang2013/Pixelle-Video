@@ -1,7 +1,7 @@
 """滤镜效果元数据"""
 
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta, EffectParam
+from .effect_meta import EffectEnum, EffectMeta, EffectParam
+
 
 class FilterType(EffectEnum):
     """滤镜效果类型"""

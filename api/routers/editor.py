@@ -17,11 +17,9 @@ from typing import List, Optional
 
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import FileResponse
-from loguru import logger
 
 from pixelle_video.services.history_manager import HistoryManager
 from pixelle_video.services.persistence import PersistenceService
-from pixelle_video.services.video_editor import VideoEditorService
 
 router = APIRouter(prefix="/editor", tags=["Editor"])
 

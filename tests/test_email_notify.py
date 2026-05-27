@@ -10,8 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
 import asyncio
+
+import pytest
 
 
 def test_email_toggle(tmp_path):

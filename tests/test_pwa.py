@@ -10,9 +10,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
 import json
 from pathlib import Path
+
+import pytest
 
 
 def test_manifest_exists():

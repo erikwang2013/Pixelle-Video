@@ -12,10 +12,11 @@
 
 """Email notification service with SMTP"""
 import json
-from pathlib import Path
 import smtplib
-from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from pathlib import Path
+
 from loguru import logger
 
 

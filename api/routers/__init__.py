@@ -14,20 +14,20 @@
 API Routers
 """
 
-from api.routers.health import router as health_router
-from api.routers.llm import router as llm_router
-from api.routers.tts import router as tts_router
-from api.routers.image import router as image_router
-from api.routers.content import router as content_router
-from api.routers.video import router as video_router
-from api.routers.tasks import router as tasks_router
-from api.routers.files import router as files_router
-from api.routers.resources import router as resources_router
-from api.routers.frame import router as frame_router
 from api.routers.analytics import router as analytics_router
-from api.routers.editor import router as editor_router
 from api.routers.auth import router as auth_router
+from api.routers.content import router as content_router
+from api.routers.editor import router as editor_router
+from api.routers.files import router as files_router
+from api.routers.frame import router as frame_router
+from api.routers.health import router as health_router
+from api.routers.image import router as image_router
+from api.routers.llm import router as llm_router
+from api.routers.resources import router as resources_router
 from api.routers.scheduler import router as scheduler_router
+from api.routers.tasks import router as tasks_router
+from api.routers.tts import router as tts_router
+from api.routers.video import router as video_router
 from api.routers.webhook import router as webhook_router
 from api.routers.ws import router as ws_router
 

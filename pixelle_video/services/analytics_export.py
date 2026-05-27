@@ -12,11 +12,9 @@
 
 """Export analytics data as CSV or HTML report"""
 import csv
-import json
-from pathlib import Path
-from io import StringIO
 from datetime import datetime
-from typing import List, Dict
+from io import StringIO
+from typing import Dict, List
 
 
 class AnalyticsExportService:

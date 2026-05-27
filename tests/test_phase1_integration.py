@@ -11,8 +11,9 @@
 # limitations under the License.
 
 """Phase 1 integration tests: subtitles, transitions, multi-voice, URL fetcher"""
-import pytest
 from pathlib import Path
+
+import pytest
 
 
 class TestSubtitleService:

@@ -1,6 +1,7 @@
 """视频片段出场动画元数据"""
 
-from .effect_meta import EffectEnum, AnimationMeta
+from .effect_meta import AnimationMeta, EffectEnum
+
 
 class OutroType(EffectEnum):
     """视频/图片出场动画类型"""

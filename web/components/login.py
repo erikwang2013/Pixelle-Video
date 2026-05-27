@@ -12,6 +12,7 @@
 
 """Optional login gate for web UI"""
 import streamlit as st
+
 from web.i18n import tr
 
 

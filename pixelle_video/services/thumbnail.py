@@ -13,9 +13,8 @@
 """AI thumbnail generation service"""
 import os
 from pathlib import Path
-from typing import Optional
+
 import ffmpeg
-from loguru import logger
 from PIL import Image, ImageDraw, ImageFont
 
 

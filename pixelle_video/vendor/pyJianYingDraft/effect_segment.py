@@ -1,12 +1,12 @@
 """定义特效/滤镜片段类"""
 
-from typing import Union, Optional, List
+from typing import List, Optional, Union
 
-from .time_util import Timerange
+from .metadata import FilterType, VideoCharacterEffectType, VideoSceneEffectType
 from .segment import BaseSegment
-from .video_segment import VideoEffect, Filter
+from .time_util import Timerange
+from .video_segment import Filter, VideoEffect
 
-from .metadata import VideoSceneEffectType, VideoCharacterEffectType, FilterType
 
 class EffectSegment(BaseSegment):
     """放置在独立特效轨道上的特效片段"""

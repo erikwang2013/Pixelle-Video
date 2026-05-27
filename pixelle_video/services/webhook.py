@@ -11,14 +11,15 @@
 # limitations under the License.
 
 """Webhook registration and dispatch service"""
-import json
-import hmac
-import hashlib
-import uuid
 import asyncio
-from pathlib import Path
+import hashlib
+import hmac
+import json
+import uuid
 from datetime import datetime
-from typing import Dict, List, Optional
+from pathlib import Path
+from typing import List
+
 import httpx
 from loguru import logger
 

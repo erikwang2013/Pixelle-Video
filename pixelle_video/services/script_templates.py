@@ -13,7 +13,6 @@
 """Script template library for different video genres"""
 from typing import Dict, List
 
-
 SCRIPT_TEMPLATES = [
     {
         "id": "news",

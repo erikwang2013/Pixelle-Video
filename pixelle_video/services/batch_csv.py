@@ -13,7 +13,7 @@
 """Batch CSV import for video generation"""
 import csv
 from pathlib import Path
-from typing import List, Dict
+from typing import Dict, List
 
 
 class BatchCSVService:

@@ -1,25 +1,37 @@
-import os
 import json
 import math
+import os
 from copy import deepcopy
+from typing import Any, Dict, List, Literal, Optional, Type, Union, overload
 
-from typing import Optional, Literal, Union, overload
-from typing import Type, Dict, List, Any
-
-from . import util
-from . import assets
-from . import exceptions
-from .template_mode import ImportedTrack, EditableTrack, ImportedMediaTrack, ImportedTextTrack, ShrinkMode, ExtendMode, import_track
-from .time_util import Timerange, tim, srt_tstamp
-from .local_materials import VideoMaterial, AudioMaterial
-from .segment import BaseSegment, Speed, ClipSettings
-from .audio_segment import AudioSegment, AudioFade, AudioEffect
-from .video_segment import VideoSegment, StickerSegment, SegmentAnimations, VideoEffect, Transition, Filter, BackgroundFilling
+from . import assets, exceptions, util
+from .audio_segment import AudioEffect, AudioFade, AudioSegment
 from .effect_segment import EffectSegment, FilterSegment
-from .text_segment import TextSegment, TextStyle, TextBubble
-from .track import TrackType, BaseTrack, Track
+from .local_materials import AudioMaterial, VideoMaterial
+from .metadata import FilterType, VideoCharacterEffectType, VideoSceneEffectType
+from .segment import BaseSegment, ClipSettings, Speed
+from .template_mode import (
+    EditableTrack,
+    ExtendMode,
+    ImportedMediaTrack,
+    ImportedTextTrack,
+    ImportedTrack,
+    ShrinkMode,
+    import_track,
+)
+from .text_segment import TextBubble, TextSegment, TextStyle
+from .time_util import Timerange, srt_tstamp, tim
+from .track import BaseTrack, Track, TrackType
+from .video_segment import (
+    BackgroundFilling,
+    Filter,
+    SegmentAnimations,
+    StickerSegment,
+    Transition,
+    VideoEffect,
+    VideoSegment,
+)
 
-from .metadata import VideoSceneEffectType, VideoCharacterEffectType, FilterType
 
 class ScriptMaterial:
     """草稿文件中的素材信息部分"""

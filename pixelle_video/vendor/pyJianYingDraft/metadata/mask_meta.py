@@ -2,6 +2,7 @@
 
 from .effect_meta import EffectEnum, MaskMeta
 
+
 class MaskType(EffectEnum):
     """蒙版类型"""
 

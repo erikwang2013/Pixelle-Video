@@ -12,10 +12,7 @@
 
 """Video embed code generation"""
 import uuid
-import json
 from pathlib import Path
-from datetime import datetime
-from typing import Dict, Optional
 
 
 class EmbedService:

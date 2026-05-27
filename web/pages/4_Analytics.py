@@ -41,8 +41,8 @@ def main():
     st.markdown(f"### 📊 {tr('analytics.title')}")
 
     try:
-        from pixelle_video.services.persistence import PersistenceService
         from pixelle_video.services.analytics import AnalyticsService
+        from pixelle_video.services.persistence import PersistenceService
 
         persistence = PersistenceService()
         tasks = run_async(persistence.list_tasks(limit=10000))

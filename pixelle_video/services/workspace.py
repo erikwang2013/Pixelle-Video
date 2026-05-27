@@ -13,10 +13,10 @@
 """Team workspaces for shared resources"""
 import json
 import uuid
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Optional
-from loguru import logger
+
 
 
 class WorkspaceService:

@@ -13,11 +13,11 @@
 """A/B testing — generate multiple video versions for comparison"""
 import json
 import uuid
-from pathlib import Path
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Optional
-from loguru import logger
 
+from loguru import logger
 
 # Pre-built test variants for common dimensions
 TEST_VARIANTS = {

@@ -1,6 +1,7 @@
 """文字入场动画元数据"""
 
-from .effect_meta import EffectEnum, AnimationMeta
+from .effect_meta import AnimationMeta, EffectEnum
+
 
 class TextIntro(EffectEnum):
     """文字入场动画, 默认时长为0.5秒"""

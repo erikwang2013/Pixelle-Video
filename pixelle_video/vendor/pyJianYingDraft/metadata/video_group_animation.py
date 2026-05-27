@@ -1,6 +1,7 @@
 """视频组合动画元数据"""
 
-from .effect_meta import EffectEnum, AnimationMeta
+from .effect_meta import AnimationMeta, EffectEnum
+
 
 class GroupAnimationType(EffectEnum):
     """视频组合动画类型"""

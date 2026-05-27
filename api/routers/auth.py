@@ -13,6 +13,7 @@
 """Auth API endpoints"""
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
+
 from pixelle_video.services.auth import UserManager
 
 router = APIRouter(prefix="/auth", tags=["Auth"])

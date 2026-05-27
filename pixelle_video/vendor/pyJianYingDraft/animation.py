@@ -1,15 +1,19 @@
 """定义视频/文本动画相关类"""
 
 import uuid
+from typing import Any, Dict, List, Literal, Optional, Union
 
-from typing import Union, Optional
-from typing import Literal, Dict, List, Any
-
+from .metadata import (
+    AnimationMeta,
+    GroupAnimationType,
+    IntroType,
+    OutroType,
+    TextIntro,
+    TextLoopAnim,
+    TextOutro,
+)
 from .time_util import Timerange
 
-from .metadata import AnimationMeta
-from .metadata import IntroType, OutroType, GroupAnimationType
-from .metadata import TextIntro, TextOutro, TextLoopAnim
 
 class Animation:
     """一个视频/文本动画效果"""

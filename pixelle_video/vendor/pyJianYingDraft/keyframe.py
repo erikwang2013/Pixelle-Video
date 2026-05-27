@@ -1,7 +1,7 @@
 import uuid
-
 from enum import Enum
-from typing import Dict, List, Any
+from typing import Any, Dict, List
+
 
 class Keyframe:
     """一个关键帧（关键点）, 目前只支持线性插值"""

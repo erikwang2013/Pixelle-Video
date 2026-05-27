@@ -14,10 +14,10 @@
 History Page - View generation history and manage tasks
 """
 
-import sys
-from pathlib import Path
-from datetime import datetime
 import os
+import sys
+from datetime import datetime
+from pathlib import Path
 
 # Add project root to sys.path
 _script_dir = Path(__file__).resolve().parent
@@ -26,11 +26,10 @@ if str(_project_root) not in sys.path:
     sys.path.insert(0, str(_project_root))
 
 import streamlit as st
-from loguru import logger
 
-from web.state.session import init_session_state, init_i18n, get_pixelle_video
 from web.components.header import render_header
 from web.i18n import tr
+from web.state.session import get_pixelle_video, init_i18n, init_session_state
 from web.utils.async_helpers import run_async
 
 # Page config

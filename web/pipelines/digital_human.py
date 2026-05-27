@@ -15,17 +15,18 @@ import time
 from pathlib import Path
 from typing import Any
 
+import httpx
 import streamlit as st
 from loguru import logger
-import httpx
-from web.i18n import tr, get_language
-from web.pipelines.base import PipelineUI, register_pipeline_ui
-from web.components.content_input import render_version_info
-from web.components.digital_tts_config import render_style_config
-from web.utils.async_helpers import run_async
-from web.utils.streamlit_helpers import check_and_warn_selfhost_workflow
+
 from pixelle_video.config import config_manager
 from pixelle_video.utils.os_util import create_task_output_dir
+from web.components.content_input import render_version_info
+from web.components.digital_tts_config import render_style_config
+from web.i18n import get_language, tr
+from web.pipelines.base import PipelineUI, register_pipeline_ui
+from web.utils.async_helpers import run_async
+
 
 class DigitalHumanPipelineUI(PipelineUI):
     """

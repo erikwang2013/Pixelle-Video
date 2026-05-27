@@ -13,10 +13,11 @@
 """Task scheduling service for automated video generation"""
 import json
 import uuid
-from pathlib import Path
+from dataclasses import dataclass, field
 from datetime import datetime
+from pathlib import Path
 from typing import Dict, List, Optional
-from dataclasses import dataclass, field, asdict
+
 from loguru import logger
 
 

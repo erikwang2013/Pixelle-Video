@@ -24,17 +24,16 @@ from typing import Dict, List, Optional
 from loguru import logger
 
 from pixelle_video.vendor.pyJianYingDraft import (
+    SEC,
     AudioSegment,
     ClipSettings,
     DraftFolder,
-    SEC,
     TextSegment,
     TextStyle,
     Timerange,
     TrackType,
     TransitionType,
     VideoSegment,
-    tim,
 )
 from pixelle_video.vendor.pyJianYingDraft.video_segment import Transition
 

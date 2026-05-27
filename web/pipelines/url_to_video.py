@@ -12,7 +12,9 @@
 
 """URL-to-Video pipeline for Streamlit UI"""
 import asyncio
+
 import streamlit as st
+
 from web.i18n import tr
 
 

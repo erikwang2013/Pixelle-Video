@@ -5,17 +5,13 @@
 
 import uuid
 from copy import deepcopy
+from typing import Any, Dict, List, Literal, Optional, Union
 
-from typing import Optional, Literal, Union
-from typing import Dict, List, Any
-
-from .time_util import tim, Timerange
-from .segment import MediaSegment, AudioFade
+from .keyframe import KeyframeList, KeyframeProperty
 from .local_materials import AudioMaterial
-from .keyframe import KeyframeProperty, KeyframeList
-
-from .metadata import EffectParamInstance
-from .metadata import AudioSceneEffectType, ToneEffectType, SpeechToSongType
+from .metadata import AudioSceneEffectType, EffectParamInstance, SpeechToSongType, ToneEffectType
+from .segment import AudioFade, MediaSegment
+from .time_util import Timerange, tim
 
 
 class AudioEffect:

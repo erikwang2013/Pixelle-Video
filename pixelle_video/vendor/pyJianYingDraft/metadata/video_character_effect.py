@@ -1,7 +1,7 @@
 """视频人物特效元数据"""
 
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta, EffectParam
+from .effect_meta import EffectEnum, EffectMeta, EffectParam
+
 
 class VideoCharacterEffectType(EffectEnum):
     """视频人物特效枚举"""

@@ -12,10 +12,9 @@
 
 """Stripe payment integration service"""
 import json
-from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Optional
-from loguru import logger
+from pathlib import Path
+from typing import Dict, Optional
 
 
 PLANS = {

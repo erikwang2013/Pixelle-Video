@@ -13,8 +13,10 @@
 """WebSocket endpoint for real-time progress streaming"""
 import json
 import time
+
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from loguru import logger
+
 from pixelle_video.services.progress_stream import progress_manager
 
 router = APIRouter(tags=["WebSocket"])

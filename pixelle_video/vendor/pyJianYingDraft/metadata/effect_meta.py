@@ -1,9 +1,8 @@
 """元数据类型定义"""
 
 from enum import Enum
+from typing import Any, Dict, List, Optional, TypeVar
 
-from typing import List, Dict, Any
-from typing import TypeVar, Optional
 
 class EffectParam:
     """特效参数信息"""

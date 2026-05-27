@@ -1,6 +1,7 @@
 """文字循环动画元数据"""
 
-from .effect_meta import EffectEnum, AnimationMeta
+from .effect_meta import AnimationMeta, EffectEnum
+
 
 class TextLoopAnim(EffectEnum):
     """文字循环动画"""

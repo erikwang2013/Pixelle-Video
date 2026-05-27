@@ -1,11 +1,12 @@
 """定义片段基类及部分比较通用的属性类"""
 
 import uuid
-from typing import Optional, Dict, List, Any, Union
+from typing import Any, Dict, List, Optional, Union
 
 from .animation import SegmentAnimations
-from .time_util import Timerange, tim
 from .keyframe import KeyframeList, KeyframeProperty
+from .time_util import Timerange, tim
+
 
 class BaseSegment:
     """片段基类"""

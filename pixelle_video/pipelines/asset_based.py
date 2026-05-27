@@ -32,18 +32,15 @@ Example:
     )
 """
 
-from typing import List, Dict, Any, Optional, Callable
 from pathlib import Path
+from typing import Any, Callable, Dict, List, Optional
 
 from loguru import logger
 from pydantic import BaseModel, Field
 
-from pixelle_video.pipelines.linear import LinearVideoPipeline, PipelineContext
 from pixelle_video.models.progress import ProgressEvent
-from pixelle_video.utils.os_util import (
-    create_task_output_dir,
-    get_task_final_video_path
-)
+from pixelle_video.pipelines.linear import LinearVideoPipeline, PipelineContext
+from pixelle_video.utils.os_util import create_task_output_dir, get_task_final_video_path
 
 # Type alias for progress callback
 ProgressCallback = Optional[Callable[[ProgressEvent], None]]
@@ -435,12 +432,9 @@ class AssetBasedPipeline(LinearVideoPipeline):
         Returns:
             Updated context with storyboard
         """
-        from pixelle_video.models.storyboard import (
-            Storyboard,
-            StoryboardFrame, 
-            StoryboardConfig
-        )
         from datetime import datetime
+
+        from pixelle_video.models.storyboard import Storyboard, StoryboardConfig, StoryboardFrame
         
         # Extract all narrations in order for compatibility
         all_narrations = []
@@ -461,7 +455,7 @@ class AssetBasedPipeline(LinearVideoPipeline):
             dims = template_name.split("/")[0].split("x")
             media_width = int(dims[0])
             media_height = int(dims[1])
-        except:
+        except (ValueError, IndexError):
             # Default to 1080x1920
             media_width = 1080
             media_height = 1920
@@ -591,7 +585,6 @@ class AssetBasedPipeline(LinearVideoPipeline):
             
             # Concatenate all narration audios for this scene
             if len(narration_audios) > 1:
-                from pixelle_video.utils.os_util import get_task_frame_path
                 
                 # Emit progress for combining audio
                 frame_progress = base_progress + ((i - 1) + 0.25) / total_frames * progress_range

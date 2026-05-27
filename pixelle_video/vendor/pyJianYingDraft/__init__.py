@@ -1,32 +1,37 @@
-import warnings
 import sys
+import warnings
 
-from .local_materials import CropSettings, VideoMaterial, AudioMaterial
-from .keyframe import KeyframeProperty
-
-from .time_util import Timerange
 from .audio_segment import AudioSegment
-from .video_segment import VideoSegment, StickerSegment, ClipSettings
-from .effect_segment import EffectSegment, FilterSegment
-from .text_segment import TextSegment, TextStyle, TextBorder, TextBackground, TextShadow
-
-from .metadata import FontType
-from .metadata import MaskType
-from .metadata import TransitionType, FilterType
-from .metadata import IntroType, OutroType, GroupAnimationType
-from .metadata import TextIntro, TextOutro, TextLoopAnim
-from .metadata import AudioSceneEffectType
-from .metadata import VideoSceneEffectType, VideoCharacterEffectType
-
-from .track import TrackType
-from .template_mode import ShrinkMode, ExtendMode
-from .script_file import ScriptFile
 from .draft_folder import DraftFolder
+from .effect_segment import EffectSegment, FilterSegment
+from .keyframe import KeyframeProperty
+from .local_materials import AudioMaterial, CropSettings, VideoMaterial
+from .metadata import (
+    AudioSceneEffectType,
+    FilterType,
+    FontType,
+    GroupAnimationType,
+    IntroType,
+    MaskType,
+    OutroType,
+    TextIntro,
+    TextLoopAnim,
+    TextOutro,
+    TransitionType,
+    VideoCharacterEffectType,
+    VideoSceneEffectType,
+)
+from .script_file import ScriptFile
+from .template_mode import ExtendMode, ShrinkMode
+from .text_segment import TextBackground, TextBorder, TextSegment, TextShadow, TextStyle
+from .time_util import Timerange
+from .track import TrackType
+from .video_segment import ClipSettings, StickerSegment, VideoSegment
 
 # 仅在Windows系统下导入jianying_controller
 ISWIN = (sys.platform == 'win32')
 if ISWIN:
-    from .jianying_controller import JianyingController, ExportResolution, ExportFramerate
+    from .jianying_controller import ExportFramerate, ExportResolution, JianyingController
 
 from .time_util import SEC, tim, trange
 

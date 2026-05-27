@@ -11,9 +11,11 @@
 # limitations under the License.
 
 """Webhook API endpoints"""
+from typing import List
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import List, Optional
+
 from pixelle_video.services.webhook import WebhookService
 
 router = APIRouter(prefix="/webhooks", tags=["Webhooks"])

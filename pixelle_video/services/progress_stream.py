@@ -14,8 +14,9 @@
 import asyncio
 import json
 import time
-from typing import Dict, Set, Optional
 from dataclasses import dataclass, field
+from typing import Dict, Set
+
 from loguru import logger
 
 

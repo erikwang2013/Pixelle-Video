@@ -12,6 +12,7 @@
 
 import pytest
 
+
 def test_list_platforms():
     from pixelle_video.services.social_publisher import SocialPublisher
     svc = SocialPublisher(data_dir="/tmp/pixelle_test_social")
@@ -20,8 +21,11 @@ def test_list_platforms():
     assert "bilibili" in platforms
 
 def test_unsupported_platform():
+    import asyncio
+
+    import pytest
+
     from pixelle_video.services.social_publisher import SocialPublisher
-    import pytest, asyncio
     svc = SocialPublisher(data_dir="/tmp/pixelle_test_social2")
     with pytest.raises(ValueError):
         asyncio.run(svc.publish("unsupported", "/tmp/v.mp4", "Test"))

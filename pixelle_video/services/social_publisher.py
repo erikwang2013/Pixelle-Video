@@ -12,9 +12,10 @@
 
 """Social media publishing service"""
 import json
-from pathlib import Path
 from datetime import datetime
-from typing import Dict, List, Optional
+from pathlib import Path
+from typing import List
+
 from loguru import logger
 
 

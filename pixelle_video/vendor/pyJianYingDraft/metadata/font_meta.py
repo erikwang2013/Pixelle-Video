@@ -1,7 +1,7 @@
 """字体资源元数据"""
 
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta
+from .effect_meta import EffectEnum, EffectMeta
+
 
 class FontType(EffectEnum):
     """字体资源类型"""

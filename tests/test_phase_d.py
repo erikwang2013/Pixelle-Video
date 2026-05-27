@@ -11,8 +11,9 @@
 # limitations under the License.
 
 """Tests for Phase D: Content Quality services."""
-import pytest
 from pathlib import Path
+
+import pytest
 
 
 def test_thumbnail_frame_extraction():

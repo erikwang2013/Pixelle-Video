@@ -18,14 +18,13 @@ Currently, TTS service uses ComfyUI workflows only.
 """
 
 import asyncio
-import ssl
 import random
-import certifi
+import ssl
+
 import edge_tts as edge_tts_sdk
+from aiohttp import ClientResponseError, WSServerHandshakeError
 from edge_tts.exceptions import NoAudioReceived
 from loguru import logger
-from aiohttp import WSServerHandshakeError, ClientResponseError
-
 
 # Use certifi bundle for SSL verification instead of disabling it
 _USE_CERTIFI_SSL = True

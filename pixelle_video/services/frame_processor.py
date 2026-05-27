@@ -26,7 +26,7 @@ import httpx
 from loguru import logger
 
 from pixelle_video.models.progress import ProgressEvent
-from pixelle_video.models.storyboard import Storyboard, StoryboardFrame, StoryboardConfig
+from pixelle_video.models.storyboard import Storyboard, StoryboardConfig, StoryboardFrame
 
 
 class FrameProcessor:

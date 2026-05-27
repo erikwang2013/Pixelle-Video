@@ -17,8 +17,9 @@ Business logic for history management (UI-agnostic).
 Provides high-level operations on top of PersistenceService.
 """
 
-from typing import List, Dict, Optional, Any
 from pathlib import Path
+from typing import Any, Dict, Optional
+
 from loguru import logger
 
 from pixelle_video.services.persistence import PersistenceService
@@ -253,8 +254,8 @@ class HistoryManager:
         Returns:
             Export file path or None if failed
         """
-        import zipfile
         import json as json_module
+        import zipfile
 
         try:
             # Verify task exists

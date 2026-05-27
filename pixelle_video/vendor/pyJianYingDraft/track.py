@@ -1,19 +1,18 @@
 """轨道类及其元数据"""
 
 import uuid
-
-from enum import Enum
-from typing import TypeVar, Generic, Type
-from typing import Dict, List, Any, Union
-from dataclasses import dataclass
 from abc import ABC, abstractmethod
+from dataclasses import dataclass
+from enum import Enum
+from typing import Any, Dict, Generic, List, Type, TypeVar, Union
 
+from .audio_segment import AudioSegment
+from .effect_segment import EffectSegment, FilterSegment
 from .exceptions import SegmentOverlap
 from .segment import BaseSegment
-from .video_segment import VideoSegment, StickerSegment
-from .audio_segment import AudioSegment
 from .text_segment import TextSegment
-from .effect_segment import EffectSegment, FilterSegment
+from .video_segment import StickerSegment, VideoSegment
+
 
 @dataclass
 class Track_meta:

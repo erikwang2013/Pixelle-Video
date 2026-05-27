@@ -2,11 +2,11 @@
 
 import os
 import shutil
-
 from typing import List
 
 from . import assets
 from .script_file import ScriptFile
+
 
 class DraftFolder:
     """管理一个文件夹及其内的一系列草稿"""

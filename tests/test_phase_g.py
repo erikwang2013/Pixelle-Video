@@ -65,6 +65,7 @@ def test_seo_max_tags():
 
 def test_database_init():
     import tempfile
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()
@@ -74,6 +75,7 @@ def test_database_init():
 
 def test_database_insert_and_query():
     import tempfile
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()
@@ -93,6 +95,7 @@ def test_database_migration():
     import json
     import tempfile
     from pathlib import Path
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()
@@ -105,6 +108,7 @@ def test_database_migration():
 
 def test_database_update_status():
     import tempfile
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()
@@ -118,6 +122,7 @@ def test_database_update_status():
 
 def test_database_delete_task():
     import tempfile
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()
@@ -130,6 +135,7 @@ def test_database_delete_task():
 
 def test_database_get_tasks_filtered():
     import tempfile
+
     from pixelle_video.services.database import DatabaseService
 
     d = tempfile.mkdtemp()

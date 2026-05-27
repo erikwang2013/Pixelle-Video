@@ -1,6 +1,7 @@
 """文字出场动画元数据"""
 
-from .effect_meta import EffectEnum, AnimationMeta
+from .effect_meta import AnimationMeta, EffectEnum
+
 
 class TextOutro(EffectEnum):
     """文字出场动画, 默认时长为0.5秒"""

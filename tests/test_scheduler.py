@@ -12,6 +12,7 @@
 
 import pytest
 
+
 def test_add_schedule():
     from pixelle_video.services.scheduler import TaskScheduler
     svc = TaskScheduler(data_dir="/tmp/pixelle_test_sched")

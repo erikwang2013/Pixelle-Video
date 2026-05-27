@@ -18,38 +18,31 @@ This is the default pipeline for general-purpose video generation.
 Refactored to use LinearVideoPipeline (Template Method Pattern).
 """
 
-from datetime import datetime
-from pathlib import Path
-from typing import Optional, Callable, Literal, List
 import asyncio
 import shutil
+from datetime import datetime
+from pathlib import Path
 
 from loguru import logger
 
-from pixelle_video.pipelines.linear import LinearVideoPipeline, PipelineContext
 from pixelle_video.models.progress import ProgressEvent
 from pixelle_video.models.storyboard import (
     Storyboard,
-    StoryboardFrame,
     StoryboardConfig,
-    ContentMetadata,
-    VideoGenerationResult
+    StoryboardFrame,
+    VideoGenerationResult,
 )
-from pixelle_video.utils.content_generators import (
-    generate_title,
-    generate_narrations_from_topic,
-    split_narration_script,
-    generate_image_prompts,
-)
-from pixelle_video.utils.os_util import (
-    create_task_output_dir,
-    get_task_final_video_path
-)
-from pixelle_video.utils.template_util import get_template_type
-from pixelle_video.utils.prompt_helper import build_image_prompt
+from pixelle_video.pipelines.linear import LinearVideoPipeline, PipelineContext
 from pixelle_video.services.video import VideoService
-
-
+from pixelle_video.utils.content_generators import (
+    generate_image_prompts,
+    generate_narrations_from_topic,
+    generate_title,
+    split_narration_script,
+)
+from pixelle_video.utils.os_util import create_task_output_dir, get_task_final_video_path
+from pixelle_video.utils.prompt_helper import build_image_prompt
+from pixelle_video.utils.template_util import get_template_type
 
 
 class StandardPipeline(LinearVideoPipeline):
@@ -346,6 +339,7 @@ class StandardPipeline(LinearVideoPipeline):
                     frame_config = config
                     if multi_voice:
                         import dataclasses
+
                         from pixelle_video.utils.tts_util import resolve_voice_for_frame
                         frame_config = dataclasses.replace(
                             config, voice_id=resolve_voice_for_frame(i, multi_voice)

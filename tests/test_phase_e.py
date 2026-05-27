@@ -10,8 +10,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 
 def test_cloud_providers_list():
@@ -24,8 +25,9 @@ def test_cloud_providers_list():
 
 
 def test_cloud_local_upload():
-    from pixelle_video.services.cloud_storage import CloudStorageService
     import tempfile
+
+    from pixelle_video.services.cloud_storage import CloudStorageService
     svc = CloudStorageService()
     src_dir = tempfile.mkdtemp()
     dst_dir = tempfile.mkdtemp()

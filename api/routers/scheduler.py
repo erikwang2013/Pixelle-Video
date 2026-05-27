@@ -11,9 +11,10 @@
 # limitations under the License.
 
 """Scheduler API endpoints"""
+
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from typing import Optional
+
 from pixelle_video.services.scheduler import TaskScheduler
 
 router = APIRouter(prefix="/schedules", tags=["Scheduler"])

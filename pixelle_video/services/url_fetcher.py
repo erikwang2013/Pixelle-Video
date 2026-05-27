@@ -13,7 +13,7 @@
 """URL content extraction and summarization service"""
 
 import re
-from typing import Dict, Optional
+from typing import Dict
 from urllib.parse import urlparse
 
 import httpx

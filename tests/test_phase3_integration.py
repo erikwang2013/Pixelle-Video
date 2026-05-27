@@ -15,9 +15,10 @@ import pytest
 
 
 def test_auth_full_flow():
-    from pixelle_video.services.auth import UserManager
-    import tempfile
     import os
+    import tempfile
+
+    from pixelle_video.services.auth import UserManager
     d = tempfile.mkdtemp()
     mgr = UserManager(data_dir=d)
     mgr.create_user("flowuser", "testpass")
@@ -28,9 +29,10 @@ def test_auth_full_flow():
 
 
 def test_webhook_full_flow():
-    from pixelle_video.services.webhook import WebhookService
-    import tempfile
     import os
+    import tempfile
+
+    from pixelle_video.services.webhook import WebhookService
     d = tempfile.mkdtemp()
     svc = WebhookService(data_dir=d)
     h = svc.register("https://hook.example.com/1", ["task.completed"], "s3cret")
@@ -40,9 +42,10 @@ def test_webhook_full_flow():
 
 
 def test_scheduler_full_flow():
-    from pixelle_video.services.scheduler import TaskScheduler
-    import tempfile
     import os
+    import tempfile
+
+    from pixelle_video.services.scheduler import TaskScheduler
     d = tempfile.mkdtemp()
     svc = TaskScheduler(data_dir=d)
     s = svc.add_schedule("Test Job", "0 9 * * 1-5")
@@ -51,9 +54,10 @@ def test_scheduler_full_flow():
 
 
 def test_social_platforms():
-    from pixelle_video.services.social_publisher import SocialPublisher
-    import tempfile
     import os
+    import tempfile
+
+    from pixelle_video.services.social_publisher import SocialPublisher
     d = tempfile.mkdtemp()
     svc = SocialPublisher(data_dir=d)
     assert len(svc.list_platforms()) == 3

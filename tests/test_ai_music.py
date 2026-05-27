@@ -1,6 +1,9 @@
-import pytest
-import tempfile, os
+import os
+import tempfile
 from pathlib import Path
+
+import pytest
+
 
 def test_list_styles():
     from pixelle_video.services.ai_music import AIMusicService
@@ -21,8 +24,9 @@ def test_recommend_style():
     assert svc.recommend_style("random topic") == "lofi"  # default
 
 def test_generate_creates_metadata():
-    from pixelle_video.services.ai_music import AIMusicService
     import asyncio
+
+    from pixelle_video.services.ai_music import AIMusicService
     d = tempfile.mkdtemp()
     svc = AIMusicService(data_dir=d)
     result = asyncio.run(svc.generate(style="cinematic", duration=30, title="Test"))
@@ -32,16 +36,18 @@ def test_generate_creates_metadata():
     assert Path(result["output_path"].replace(".mp3", ".json")).exists()
 
 def test_generate_unknown_style_falls_back():
-    from pixelle_video.services.ai_music import AIMusicService
     import asyncio
+
+    from pixelle_video.services.ai_music import AIMusicService
     d = tempfile.mkdtemp()
     svc = AIMusicService(data_dir=d)
     result = asyncio.run(svc.generate(style="nonexistent"))
     assert result["style"] == "lofi"
 
 def test_history_and_delete():
-    from pixelle_video.services.ai_music import AIMusicService
     import asyncio
+
+    from pixelle_video.services.ai_music import AIMusicService
     d = tempfile.mkdtemp()
     svc = AIMusicService(data_dir=d)
     result = asyncio.run(svc.generate(style="jazz", duration=60))

@@ -2,6 +2,7 @@
 
 from .effect_meta import EffectEnum, TransitionMeta
 
+
 class TransitionType(EffectEnum):
     """转场类型"""
 

@@ -1,5 +1,5 @@
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta, EffectParam
+from .effect_meta import EffectEnum, EffectMeta, EffectParam
+
 
 class ToneEffectType(EffectEnum):
     """剪映自带的音频“音色”效果类型"""

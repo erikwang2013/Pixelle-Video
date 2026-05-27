@@ -1,5 +1,5 @@
-from .effect_meta import EffectEnum
-from .effect_meta import EffectMeta
+from .effect_meta import EffectEnum, EffectMeta
+
 
 class SpeechToSongType(EffectEnum):
     """剪映自带的音频“声音成曲”效果类型, 此类效果目前不能自动被剪映所识别"""

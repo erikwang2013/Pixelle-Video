@@ -12,7 +12,6 @@
 
 """Video watermark overlay service"""
 import ffmpeg
-from loguru import logger
 
 
 class WatermarkService:
