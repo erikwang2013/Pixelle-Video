@@ -56,6 +56,9 @@ from api.routers import (
     frame_router,
     analytics_router,
     editor_router,
+    auth_router,
+    scheduler_router,
+    webhook_router,
 )
 
 
@@ -137,6 +140,9 @@ app.include_router(resources_router, prefix=api_config.api_prefix)
 app.include_router(frame_router, prefix=api_config.api_prefix)
 app.include_router(analytics_router, prefix=api_config.api_prefix)
 app.include_router(editor_router, prefix=api_config.api_prefix)
+app.include_router(auth_router, prefix=api_config.api_prefix)
+app.include_router(scheduler_router, prefix=api_config.api_prefix)
+app.include_router(webhook_router, prefix=api_config.api_prefix)
 
 
 @app.get("/")
@@ -159,6 +165,9 @@ async def root():
             "frame": f"{api_config.api_prefix}/frame",
             "analytics": f"{api_config.api_prefix}/analytics",
             "editor": f"{api_config.api_prefix}/editor",
+            "auth": f"{api_config.api_prefix}/auth",
+            "scheduler": f"{api_config.api_prefix}/schedules",
+            "webhook": f"{api_config.api_prefix}/webhooks",
         }
     }
 

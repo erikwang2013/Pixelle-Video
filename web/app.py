@@ -71,8 +71,14 @@ def main():
         icon="✂️",
     )
 
+    account_page = st.Page(
+        "pages/6_Account.py",
+        title="Account",
+        icon="⚙️",
+    )
+
     # Set up navigation and run
-    pg = st.navigation([home_page, history_page, url_page, analytics_page, editor_page])
+    pg = st.navigation([home_page, history_page, url_page, analytics_page, editor_page, account_page])
     pg.run()
 
 

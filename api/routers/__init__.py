@@ -26,6 +26,9 @@ from api.routers.resources import router as resources_router
 from api.routers.frame import router as frame_router
 from api.routers.analytics import router as analytics_router
 from api.routers.editor import router as editor_router
+from api.routers.auth import router as auth_router
+from api.routers.scheduler import router as scheduler_router
+from api.routers.webhook import router as webhook_router
 
 __all__ = [
     "health_router",
@@ -40,5 +43,8 @@ __all__ = [
     "frame_router",
     "analytics_router",
     "editor_router",
+    "auth_router",
+    "scheduler_router",
+    "webhook_router",
 ]
 
