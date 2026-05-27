@@ -88,6 +88,56 @@ Automatically previews when complete.
 
 ---
 
+## Advanced Video Settings
+
+In the sidebar below system configuration, expand "Advanced Video Settings":
+
+- **Auto Subtitles**: Generate SRT subtitles and burn into video (top/bottom position)
+- **Transition Effects**: Choose frame transition animation (none/crossfade/fade to black/slide left/zoom in)
+- **Multi-Speaker TTS**: Alternate different voices per frame for dialogue effect
+
+---
+## Page Navigation
+
+The Web UI includes multiple pages:
+
+| Page | Function |
+|------|----------|
+| 🎬 Home | Video generation |
+| 📚 History | Generation history |
+| 🔗 URL-to-Video | Convert web articles to videos |
+| 📊 Analytics | Usage statistics dashboard |
+| ✂️ Editor | Video frame editor |
+| ⚙️ Account | Settings and integrations |
+
+---
+## Analytics
+
+The Analytics page provides:
+- Summary cards: total tasks, success rate, total duration, avg duration
+- Daily generation trend line chart
+- Pipeline distribution bar chart
+
+---
+## Video Editor
+
+The Editor page supports:
+- Select completed tasks to edit
+- Reorder frames by index
+- Trim individual frame duration
+- Regenerate single frames with new prompts
+- Export tasks as ZIP packages (video, frames, metadata)
+
+---
+## Account Settings
+
+The Account page has four tabs:
+- **API Keys**: Create and manage API access keys
+- **Webhooks**: Register callback URLs for task completion notifications
+- **Schedules**: Create cron-based scheduled video generation
+- **Social**: Configure social media publishing credentials (YouTube, Bilibili coming soon)
+
+---
 ## FAQ
 
 The sidebar includes built-in FAQ for quick reference:

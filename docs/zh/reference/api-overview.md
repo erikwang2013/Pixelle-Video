@@ -33,6 +33,9 @@ await pixelle.initialize()
 - `template_params` (dict, optional): 模板自定义参数
 - `bgm_path` (str, optional): BGM 文件路径
 - `bgm_volume` (float): BGM 音量 (0.0-1.0)
+- `subtitles` (bool): 是否启用自动字幕
+- `transition` (str): 转场效果 ("none"/"crossfade"/"fade_in_out"/"slide_left"/"zoom_in")
+- `multi_voice` (list): 多角色配音音色列表
 
 **返回**: `VideoResult` 对象
 
@@ -132,6 +135,44 @@ uv run uvicorn api.app:app --host 0.0.0.0 --port 8000
 | `prompt_prefix` | string | 否 | 图像风格前缀 |
 | `bgm_path` | string | 否 | BGM 文件路径 |
 | `bgm_volume` | float | 否 | BGM 音量 (0.0-1.0，默认 0.3) |
+| `subtitles` | bool | 否 | 启用自动字幕生成与烧录 |
+| `transition` | string | 否 | 转场效果：none/crossfade/fade_in_out/slide_left/zoom_in |
+| `multi_voice` | list | 否 | 多角色配音音色列表，按帧交替使用 |
+
+---
+## 新增 API 端点
+
+### 使用统计
+
+`GET /api/analytics/summary` — 总览统计
+`GET /api/analytics/trends?days=30` — 每日趋势
+`GET /api/analytics/pipelines` — 管线分布
+
+### 视频编辑
+
+`POST /api/editor/reorder` — 重排帧顺序
+`POST /api/editor/regenerate-frame` — 重新生成单帧
+`GET /api/editor/export/{task_id}` — 导出任务 ZIP
+
+### 用户认证
+
+`POST /api/auth/login` — 登录
+`POST /api/auth/api-keys` — 创建 API 密钥
+`GET /api/auth/api-keys` — 列出密钥
+`DELETE /api/auth/api-keys/{key_id}` — 撤销密钥
+
+### Webhook
+
+`GET /api/webhooks` — 列出 Webhook
+`POST /api/webhooks` — 注册 Webhook
+`DELETE /api/webhooks/{webhook_id}` — 删除 Webhook
+`POST /api/webhooks/test` — 测试发送
+
+### 定时任务
+
+`GET /api/schedules` — 列出定时任务
+`POST /api/schedules` — 创建定时任务
+`DELETE /api/schedules/{schedule_id}` — 删除定时任务
 
 ---
 

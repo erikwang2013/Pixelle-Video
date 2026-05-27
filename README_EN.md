@@ -32,6 +32,8 @@ Just input a **topic**, and Pixelle-Video will automatically:
 
 ## 📋 Recent Updates
 
+- ✅ **2026-05-27**: Added subtitles, video transitions, multi-speaker TTS, URL-to-video, analytics dashboard, video editor, user auth, webhook notifications, task scheduler, social publishing — 14 new features
+- ✅ **2026-05-26**: Added multi-language UI support covering 14 languages (EN, KO, JA, FR, DE, ES, FIL, ZH-TW, UG, TH, YUE, VI, PT-BR)
 - ✅ **2026-01-26**: Added the Motion Transfer pipeline — upload a reference video and an image to transfer motion.
 - ✅ **2026-01-14**: Added "Digital Human" and "Image-to-Video" pipelines, multi-language TTS voices support
 - ✅ **2026-01-06**: Added RunningHub 48G VRAM machine support
@@ -51,11 +53,20 @@ Just input a **topic**, and Pixelle-Video will automatically:
 - ✅ **AI Smart Copywriting** - Intelligently create narration based on topic, no need to write scripts yourself
 - ✅ **AI Generated Images** - Each sentence comes with beautiful AI illustrations
 - ✅ **AI Generated Videos** - Support AI video generation models (like WAN 2.1) to create dynamic video content
-- ✅ **AI Generated Voice** - Support Edge-TTS, Index-TTS and many other mainstream TTS solutions
+- ✅ **AI Generated Voice** - Support Edge-TTS, Index-TTS and many other mainstream TTS solutions with multi-speaker support
+- ✅ **Auto Subtitles** - Generate and burn subtitles into video automatically
+- ✅ **Video Transitions** - 5 transition effects (crossfade, fade to black, slide, zoom)
+- ✅ **URL to Video** - Paste a web URL, AI extracts content and generates a video
 - ✅ **Background Music** - Support adding BGM to make videos more atmospheric
 - ✅ **Visual Styles** - Multiple templates to choose from, create unique video styles
 - ✅ **Flexible Dimensions** - Support portrait, landscape and other video dimensions
 - ✅ **Multiple AI Models** - Support GPT, Qwen, DeepSeek, Ollama and more
+- ✅ **Multi-language UI** - Supports 14 languages with auto-detection
+- ✅ **Analytics Dashboard** - View generation trends, success rates, pipeline distribution
+- ✅ **Video Editor** - Frame reorder, trim, replace, task export
+- ✅ **Task Scheduler** - Cron-based scheduled video generation
+- ✅ **Webhook Notifications** - Callback when video generation completes
+- ✅ **User Authentication** - API key management, multi-user support
 - ✅ **Flexible Atomic Capability Combination** - Based on ComfyUI architecture, can use preset workflows or customize any capability (such as replacing image generation model with FLUX, replacing TTS with ChatTTS, etc.)
 
 

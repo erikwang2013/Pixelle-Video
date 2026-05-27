@@ -31,11 +31,19 @@ Simply input a **topic**, and Pixelle-Video will automatically:
 - ✅ **Fully Automated** - Input a topic, get a complete video in 3 minutes
 - ✅ **AI-Powered Scripts** - Intelligently create narration based on your topic
 - ✅ **AI-Generated Images** - Each sentence comes with beautiful AI illustrations
-- ✅ **AI Voice Synthesis** - Support for Edge-TTS, Index-TTS and more mainstream TTS solutions
+- ✅ **AI Voice Synthesis** - Support for Edge-TTS, Index-TTS and more with multi-speaker support
+- ✅ **Auto Subtitles** - Generate and burn subtitles into video
+- ✅ **Video Transitions** - 5 transition effects between frames
+- ✅ **URL to Video** - Paste a URL, AI extracts content and creates a video
 - ✅ **Background Music** - Add BGM for enhanced atmosphere
 - ✅ **Visual Styles** - Multiple templates to create unique video styles
-- ✅ **Flexible Dimensions** - Support for portrait, landscape and more video sizes
+- ✅ **Flexible Dimensions** - Support for portrait, landscape and more
 - ✅ **Multiple AI Models** - Support for GPT, Qianwen, DeepSeek, Ollama, etc.
+- ✅ **Multi-language UI** - Supports 14 languages with auto-detection
+- ✅ **Analytics Dashboard** - View generation trends and pipeline stats
+- ✅ **Video Editor** - Frame reorder, trim, replace, ZIP export
+- ✅ **Scheduler + Webhooks** - Cron scheduling, callback notifications
+- ✅ **User Authentication** - API key management, multi-user support
 - ✅ **Flexible Composition** - Based on ComfyUI architecture, use preset workflows or customize any capability
 
 ---

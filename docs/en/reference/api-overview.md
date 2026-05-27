@@ -33,6 +33,9 @@ Primary method for generating videos.
 - `template_params` (dict, optional): Custom template parameters
 - `bgm_path` (str, optional): BGM file path
 - `bgm_volume` (float): BGM volume (0.0-1.0)
+- `subtitles` (bool): Enable auto subtitle generation
+- `transition` (str): Transition effect ("none"/"crossfade"/"fade_in_out"/"slide_left"/"zoom_in")
+- `multi_voice` (list): Multi-speaker TTS voice list
 
 **Returns**: `VideoResult` object
 
@@ -132,6 +135,44 @@ Generate video asynchronously, returns task ID immediately. Suitable for large v
 | `prompt_prefix` | string | No | Image style prefix |
 | `bgm_path` | string | No | BGM file path |
 | `bgm_volume` | float | No | BGM volume (0.0-1.0, default 0.3) |
+| `subtitles` | bool | No | Enable auto subtitle generation and burn-in |
+| `transition` | string | No | Transition: none/crossfade/fade_in_out/slide_left/zoom_in |
+| `multi_voice` | list | No | Multi-speaker voice list, alternated per frame |
+
+---
+## New API Endpoints
+
+### Analytics
+
+`GET /api/analytics/summary` — Aggregate stats
+`GET /api/analytics/trends?days=30` — Daily trends
+`GET /api/analytics/pipelines` — Pipeline distribution
+
+### Video Editor
+
+`POST /api/editor/reorder` — Reorder frames
+`POST /api/editor/regenerate-frame` — Regenerate single frame
+`GET /api/editor/export/{task_id}` — Export task ZIP
+
+### Authentication
+
+`POST /api/auth/login` — Login
+`POST /api/auth/api-keys` — Create API key
+`GET /api/auth/api-keys` — List keys
+`DELETE /api/auth/api-keys/{key_id}` — Revoke key
+
+### Webhooks
+
+`GET /api/webhooks` — List webhooks
+`POST /api/webhooks` — Register webhook
+`DELETE /api/webhooks/{webhook_id}` — Delete webhook
+`POST /api/webhooks/test` — Test dispatch
+
+### Scheduler
+
+`GET /api/schedules` — List schedules
+`POST /api/schedules` — Create schedule
+`DELETE /api/schedules/{schedule_id}` — Delete schedule
 
 ---
 
