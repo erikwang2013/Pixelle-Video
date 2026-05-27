@@ -598,6 +598,17 @@
     "email.test": "发送测试邮件",
     "email.test_sent": "测试邮件已发送",
     "email.test_failed": "测试邮件发送失败",
-    "email.save_config": "保存配置"
+    "email.save_config": "保存配置",
+    "jianying.title": "✂️ 导出到剪映",
+    "jianying.description": "将 AI 生成的内容导出为剪映草稿，可在剪映专业版中打开进行精细编辑和渲染",
+    "jianying.project_name": "项目名称",
+    "jianying.project_name_help": "剪映草稿文件夹的名称",
+    "jianying.version": "剪映版本",
+    "jianying.version_help": "选择您安装的剪映版本。5.9 支持自动导出，6.0+ 需手动导出",
+    "jianying.export_button": "导出剪映草稿",
+    "jianying.exporting": "正在导出剪映项目...",
+    "jianying.export_success": "剪映草稿已生成！",
+    "jianying.export_failed": "导出失败",
+    "jianying.open_hint": "打开剪映专业版 → 「草稿」→ 找到上述项目即可编辑和导出。Windows 草稿目录通常在：C:\\Users\\用户名\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\"
   }
 }

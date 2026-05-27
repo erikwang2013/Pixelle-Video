@@ -47,7 +47,20 @@ Services:
 - BatchCSVService: Batch CSV import for video generation
 - EmailNotifyService: Email notification service with SMTP and enable/disable toggle
 - SEOService: AI-powered SEO metadata generation for videos
+- EmbedService: Video embed code and share link generation
+- CloudStorageService: Cloud storage integration (S3, OSS, COS, local)
+- RateLimiter: API rate limiting with token bucket algorithm
+- AnalyticsExportService: Export analytics data as CSV or HTML report
+- QualityPresetService: Video quality presets for different output needs
+- ThumbnailService: AI thumbnail generation with frame extraction and text overlay
+- WatermarkService: Text and image watermark overlay on videos
+- ScriptTemplateService: Script template library for different video genres
+- TTSEmotionService: TTS emotion profiles for voice styling
+- BatchCSVService: Batch CSV import for video generation
+- EmailNotifyService: Email notification service with SMTP and enable/disable toggle
+- SEOService: AI-powered SEO metadata generation for videos
 - DatabaseService: SQLite database for task storage and migration from JSON
+- JianYingExportService: Export storyboard to JianYing (剪映) draft format
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -82,6 +95,7 @@ from pixelle_video.services.batch_csv import BatchCSVService
 from pixelle_video.services.email_notify import EmailNotifyService
 from pixelle_video.services.seo import SEOService
 from pixelle_video.services.database import DatabaseService
+from pixelle_video.services.jianying_export import JianYingExportService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -120,4 +134,5 @@ __all__ = [
     "EmailNotifyService",
     "SEOService",
     "DatabaseService",
+    "JianYingExportService",
 ]

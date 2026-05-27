@@ -598,6 +598,17 @@
     "email.test": "Send Test Email",
     "email.test_sent": "Test email sent",
     "email.test_failed": "Test email failed",
-    "email.save_config": "Save Configuration"
+    "email.save_config": "Save Configuration",
+    "jianying.title": "✂️ Export to JianYing",
+    "jianying.description": "Export AI-generated content as JianYing drafts, open in JianYing Pro for pro-level editing and rendering",
+    "jianying.project_name": "Project Name",
+    "jianying.project_name_help": "Name of the JianYing draft folder",
+    "jianying.version": "JianYing Version",
+    "jianying.version_help": "Select your installed JianYing version. 5.9 supports auto export, 6.0+ requires manual export",
+    "jianying.export_button": "Export JianYing Draft",
+    "jianying.exporting": "Exporting JianYing project...",
+    "jianying.export_success": "JianYing draft generated!",
+    "jianying.export_failed": "Export failed",
+    "jianying.open_hint": "Open JianYing Pro → 'Drafts' → find the project above to edit and export. Windows drafts folder: C:\\Users\\username\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\"
   }
 }
