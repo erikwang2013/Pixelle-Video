@@ -586,6 +586,18 @@
     "scheduler.create": "创建定时任务",
     "scheduler.created": "定时任务已创建",
     "social.title": "社交媒体发布",
-    "social.placeholder": "社交媒体集成需要配置 OAuth 凭证。即将支持：YouTube、Bilibili、TikTok。"
+    "social.placeholder": "社交媒体集成需要配置 OAuth 凭证。即将支持：YouTube、Bilibili、TikTok。",
+    "email.title": "邮件通知",
+    "email.enabled": "启用邮件通知",
+    "email.smtp_host": "SMTP 服务器",
+    "email.smtp_port": "端口",
+    "email.username": "用户名",
+    "email.password": "密码",
+    "email.from": "发件人",
+    "email.to": "收件人",
+    "email.test": "发送测试邮件",
+    "email.test_sent": "测试邮件已发送",
+    "email.test_failed": "测试邮件发送失败",
+    "email.save_config": "保存配置"
   }
 }

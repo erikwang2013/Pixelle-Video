@@ -586,6 +586,18 @@
     "scheduler.create": "Create Schedule",
     "scheduler.created": "Schedule created",
     "social.title": "Social Media Publishing",
-    "social.placeholder": "Social media integration requires OAuth credentials. Coming soon: YouTube, Bilibili, TikTok."
+    "social.placeholder": "Social media integration requires OAuth credentials. Coming soon: YouTube, Bilibili, TikTok.",
+    "email.title": "Email Notification",
+    "email.enabled": "Enable Email Notifications",
+    "email.smtp_host": "SMTP Server",
+    "email.smtp_port": "Port",
+    "email.username": "Username",
+    "email.password": "Password",
+    "email.from": "Sender",
+    "email.to": "Recipient",
+    "email.test": "Send Test Email",
+    "email.test_sent": "Test email sent",
+    "email.test_failed": "Test email failed",
+    "email.save_config": "Save Configuration"
   }
 }

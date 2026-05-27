@@ -36,6 +36,20 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
+# Inject PWA meta tags and service worker
+st.markdown("""
+<link rel="manifest" href="/static/manifest.json">
+<meta name="theme-color" content="#ff4b4b">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/static/sw.js');
+}
+</script>
+""", unsafe_allow_html=True)
+
 
 def main():
     """Main entry point with navigation"""

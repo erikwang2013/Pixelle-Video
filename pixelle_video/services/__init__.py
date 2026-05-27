@@ -45,6 +45,7 @@ Services:
 - ScriptTemplateService: Script template library for different video genres
 - TTSEmotionService: TTS emotion profiles for voice styling
 - BatchCSVService: Batch CSV import for video generation
+- EmailNotifyService: Email notification service with SMTP and enable/disable toggle
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -76,6 +77,7 @@ from pixelle_video.services.watermark import WatermarkService
 from pixelle_video.services.script_templates import ScriptTemplateService
 from pixelle_video.services.tts_emotion import TTSEmotionService
 from pixelle_video.services.batch_csv import BatchCSVService
+from pixelle_video.services.email_notify import EmailNotifyService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -111,4 +113,5 @@ __all__ = [
     "ScriptTemplateService",
     "TTSEmotionService",
     "BatchCSVService",
+    "EmailNotifyService",
 ]
