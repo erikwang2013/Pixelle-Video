@@ -32,7 +32,7 @@ Just input a **topic**, and Pixelle-Video will automatically:
 
 ## 📋 Recent Updates
 
-- ✅ **2026-05-27**: Added 30+ features: subtitles, transitions, multi-speaker TTS, URL-to-video, analytics, video editor, auth, webhooks, scheduler, thumbnails, watermark, script templates, TTS emotion, batch CSV, cloud storage, rate limiter, quality presets, workspaces, Stripe, embed codes, PWA, email notifications, SEO, SQLite DB, Docker healthcheck, JianYing/CapCut export
+- ✅ **2026-05-27**: Added 30+ features: subtitles, transitions, multi-speaker TTS, URL-to-video, analytics, video editor, auth, webhooks, scheduler, thumbnails, watermark, script templates, TTS emotion, batch CSV, cloud storage, rate limiter, quality presets, workspaces, Stripe, embed codes, PWA, email notifications, SEO, SQLite DB, Docker healthcheck, JianYing/CapCut export, AI music generation, WebSocket progress, A/B testing
 - ✅ **2026-05-26**: Added multi-language UI support covering 14 languages (EN, KO, JA, FR, DE, ES, FIL, ZH-TW, UG, TH, YUE, VI, PT-BR)
 - ✅ **2026-01-26**: Added the Motion Transfer pipeline — upload a reference video and an image to transfer motion.
 - ✅ **2026-01-14**: Added "Digital Human" and "Image-to-Video" pipelines, multi-language TTS voices support
@@ -71,6 +71,9 @@ Just input a **topic**, and Pixelle-Video will automatically:
 - ✅ **PWA Support** - Install on mobile, offline caching
 - ✅ **Email Notifications** - Auto email on video completion (with toggle)
 - ✅ **SEO Metadata** - AI-generated titles, descriptions, and tags
+- ✅ **AI Music** - 10 styles auto-matching, Suno/Udio integration
+- ✅ **Real-time Progress** - WebSocket push updates, no polling needed
+- ✅ **A/B Testing** - Multi-variant comparison across 5 dimensions
 - ✅ **Flexible Atomic Capability Combination** - Based on ComfyUI architecture, can use preset workflows or customize any capability (such as replacing image generation model with FLUX, replacing TTS with ChatTTS, etc.)
 
 

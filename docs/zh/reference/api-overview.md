@@ -178,6 +178,21 @@ uv run uvicorn api.app:app --host 0.0.0.0 --port 8000
 
 `POST /api/jianying/export` — 导出故事板为剪映草稿格式
 
+### WebSocket 实时进度
+
+`WS /api/ws/progress/{task_id}` — WebSocket 实时进度推送
+`GET /api/ws/stats` — 连接统计
+
+### A/B 测试
+
+`POST /api/ab-test` — 创建 A/B 测试计划
+`GET /api/ab-test/{test_id}` — 获取测试详情
+
+### AI 音乐
+
+`GET /api/music/styles` — 可用风格
+`POST /api/music/generate` — 生成 AI 音乐
+
 ---
 
 ## 更多信息

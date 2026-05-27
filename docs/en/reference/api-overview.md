@@ -178,6 +178,21 @@ Generate video asynchronously, returns task ID immediately. Suitable for large v
 
 `POST /api/jianying/export` — Export storyboard to JianYing/CapCut draft
 
+### WebSocket Progress
+
+`WS /api/ws/progress/{task_id}` — Real-time progress push
+`GET /api/ws/stats` — Connection stats
+
+### A/B Testing
+
+`POST /api/ab-test` — Create A/B test plan
+`GET /api/ab-test/{test_id}` — Comparison report
+
+### AI Music
+
+`GET /api/music/styles` — Available styles
+`POST /api/music/generate` — Generate AI music
+
 ---
 
 ## More Information
