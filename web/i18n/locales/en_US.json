@@ -609,6 +609,13 @@
     "jianying.exporting": "Exporting JianYing project...",
     "jianying.export_success": "JianYing draft generated!",
     "jianying.export_failed": "Export failed",
-    "jianying.open_hint": "Open JianYing Pro → 'Drafts' → find the project above to edit and export. Windows drafts folder: C:\\Users\\username\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\"
+    "jianying.open_hint": "Open JianYing Pro → 'Drafts' → find the project above to edit and export. Windows drafts folder: C:\\Users\\username\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\",
+    "ai_music.title": "AI Music Generator",
+    "ai_music.style": "Music Style",
+    "ai_music.duration": "Duration (sec)",
+    "ai_music.generate": "Generate AI Music",
+    "ai_music.generating": "Generating AI Music...",
+    "ai_music.recommend": "Smart Style Recommendation",
+    "ai_music.history": "Generation History"
   }
 }

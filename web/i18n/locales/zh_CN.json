@@ -609,6 +609,13 @@
     "jianying.exporting": "正在导出剪映项目...",
     "jianying.export_success": "剪映草稿已生成！",
     "jianying.export_failed": "导出失败",
-    "jianying.open_hint": "打开剪映专业版 → 「草稿」→ 找到上述项目即可编辑和导出。Windows 草稿目录通常在：C:\\Users\\用户名\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\"
+    "jianying.open_hint": "打开剪映专业版 → 「草稿」→ 找到上述项目即可编辑和导出。Windows 草稿目录通常在：C:\\Users\\用户名\\AppData\\Local\\JianyingPro\\User Data\\Projects\\commercial\\",
+    "ai_music.title": "AI 音乐生成",
+    "ai_music.style": "音乐风格",
+    "ai_music.duration": "时长(秒)",
+    "ai_music.generate": "生成 AI 音乐",
+    "ai_music.generating": "正在生成 AI 音乐...",
+    "ai_music.recommend": "智能推荐风格",
+    "ai_music.history": "生成历史"
   }
 }
