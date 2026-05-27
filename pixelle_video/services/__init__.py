@@ -33,6 +33,18 @@ Services:
 - SocialPublisher: Social media video publishing (YouTube, Bilibili, TikTok)
 - UserManager: User authentication and API key management
 - WebhookService: Webhook registration and dispatch service
+- WorkspaceService: Team workspaces with shared resources and invite codes
+- PaymentService: Stripe payment integration with plan management
+- EmbedService: Video embed code and share link generation
+- CloudStorageService: Cloud storage integration (S3, OSS, COS, local)
+- RateLimiter: API rate limiting with token bucket algorithm
+- AnalyticsExportService: Export analytics data as CSV or HTML report
+- QualityPresetService: Video quality presets for different output needs
+- ThumbnailService: AI thumbnail generation with frame extraction and text overlay
+- WatermarkService: Text and image watermark overlay on videos
+- ScriptTemplateService: Script template library for different video genres
+- TTSEmotionService: TTS emotion profiles for voice styling
+- BatchCSVService: Batch CSV import for video generation
 """
 
 from pixelle_video.services.comfy_base_service import ComfyBaseService
@@ -52,6 +64,18 @@ from pixelle_video.services.scheduler import TaskScheduler
 from pixelle_video.services.social_publisher import SocialPublisher
 from pixelle_video.services.auth import UserManager
 from pixelle_video.services.webhook import WebhookService
+from pixelle_video.services.workspace import WorkspaceService
+from pixelle_video.services.payment import PaymentService
+from pixelle_video.services.embed import EmbedService
+from pixelle_video.services.cloud_storage import CloudStorageService
+from pixelle_video.services.rate_limiter import RateLimiter
+from pixelle_video.services.analytics_export import AnalyticsExportService
+from pixelle_video.services.quality_presets import QualityPresetService
+from pixelle_video.services.thumbnail import ThumbnailService
+from pixelle_video.services.watermark import WatermarkService
+from pixelle_video.services.script_templates import ScriptTemplateService
+from pixelle_video.services.tts_emotion import TTSEmotionService
+from pixelle_video.services.batch_csv import BatchCSVService
 
 # Backward compatibility alias
 ImageService = MediaService
@@ -75,5 +99,16 @@ __all__ = [
     "SocialPublisher",
     "UserManager",
     "WebhookService",
+    "WorkspaceService",
+    "PaymentService",
+    "EmbedService",
+    "CloudStorageService",
+    "RateLimiter",
+    "AnalyticsExportService",
+    "QualityPresetService",
+    "ThumbnailService",
+    "WatermarkService",
+    "ScriptTemplateService",
+    "TTSEmotionService",
+    "BatchCSVService",
 ]
-
